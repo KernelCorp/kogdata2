@@ -38,8 +38,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :test do
+group :test, :development do
+  gem 'rspec'
   gem 'rspec-rails'
+  gem 'factory_girl'
 end
 
 group :assets do
