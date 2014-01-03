@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Theme:
+  = @conversation.theme
+
+= link_to 'Edit', edit_conversation_path(@conversation)
+\|
+= link_to 'Back', conversations_path

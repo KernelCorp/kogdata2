@@ -15,6 +15,8 @@ gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+gem 'haml-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -41,12 +43,9 @@ end
 group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
-group :assets do
-  gem 'haml-rails'
-end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
