@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :user do
     name     'user'
     surname  'suruser'
-    email    'user@example.com'
+    email    'user4@example.com'
     password 'password'
     conversations { [FactoryGirl.create(:conversation)] }
   end

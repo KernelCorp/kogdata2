@@ -1,10 +1,12 @@
 class ConversationsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_conversation, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /conversations
   # GET /conversations.json
   def index
-    @conversations = Conversation.all
+    @conversations = current_user.conversations
   end
 
   # GET /conversations/1
@@ -14,7 +16,7 @@ class ConversationsController < ApplicationController
 
   # GET /conversations/new
   def new
-    @conversation = Conversation.new
+    @conversation = current_user.conversations.build
   end
 
   # GET /conversations/1/edit
@@ -24,7 +26,7 @@ class ConversationsController < ApplicationController
   # POST /conversations
   # POST /conversations.json
   def create
-    @conversation = Conversation.new(conversation_params)
+    @conversation = current_user.conversations.build
 
     respond_to do |format|
       if @conversation.save
@@ -69,6 +71,6 @@ class ConversationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversation_params
-      params.require(:conversation).permit(:theme)
+      params[:conversation]
     end
 end
