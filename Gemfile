@@ -3,6 +3,12 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
+gem 'protected_attributes'
+
+gem 'devise'
+
+gem 'cancan'
+
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
@@ -34,6 +40,10 @@ end
 
 group :test do
   gem 'rspec-rails'
+end
+
+group :assets do
+  gem 'haml-rails'
 end
 
 # Use ActiveModel has_secure_password
