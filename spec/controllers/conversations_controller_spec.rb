@@ -23,7 +23,7 @@ describe ConversationsController do
   # This should return the minimal set of attributes required to create a valid
   # Conversation. As you add validations to Conversation, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "theme" => "MyString", users: [@owner.id]} }
+  let(:valid_attributes) { { "theme" => "MyString"} }
 
   before :each do
     @owner =  FactoryGirl.create :user, email: 'owner@example.com', conversations: []
@@ -99,13 +99,14 @@ describe ConversationsController do
 
       it "assigns a newly created conversation as @conversation" do
         sign_in @owner
-        post :create, conversation: {users: [@users.first.id]}
+        post :create, conversation: valid_attributes
         assigns(:conversation).should be_a(Conversation)
         assigns(:conversation).should be_persisted
       end
 
       it "redirects to the created conversation" do
-        post :create, {conversation:  valid_attributes}, valid_session
+        sign_in @owner
+        post :create, {conversation:  valid_attributes}
         response.should redirect_to(Conversation.last)
       end
     end
@@ -113,27 +114,13 @@ describe ConversationsController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested conversation" do
-        conversation = Conversation.create! valid_attributes
-        # Assuming there are no other conversations in the database, this
-        # specifies that the Conversation created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Conversation.any_instance.should_receive(:update).with({ "theme" => "MyString" })
-        put :update, {:id => conversation.to_param, conversation:  { "theme" => "MyString" }}, valid_session
-      end
-
       it "assigns the requested conversation as @conversation" do
-        conversation = Conversation.create! valid_attributes
-        put :update, {:id => conversation.to_param, conversation:  valid_attributes}, valid_session
+        sign_in @owner
+        conversation = @owner.conversations.create! valid_attributes
+        put :update, {:id => conversation.to_param, conversation:  valid_attributes}
         assigns(:conversation).should eq(conversation)
       end
 
-      it "redirects to the conversation" do
-        conversation = Conversation.create! valid_attributes
-        put :update, {:id => conversation.to_param, conversation:  valid_attributes}, valid_session
-        response.should redirect_to(conversation)
-      end
     end
   end
 
