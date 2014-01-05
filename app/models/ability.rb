@@ -33,5 +33,9 @@ class Ability
       user.conversations.include? conv
     end
     can [:new, :create, :index], Conversation
+    can :manage, Message do |message|
+      (user.conversations.include? message.conversation) || message.conversation.nil?
+    end
+
   end
 end

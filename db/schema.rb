@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103083600) do
+ActiveRecord::Schema.define(version: 20140104043056) do
 
   create_table "conversations", force: true do |t|
     t.string   "theme"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 20140103083600) do
   add_index "conversations_users", ["conversation_id"], name: "index_conversations_users_on_conversation_id", using: :btree
   add_index "conversations_users", ["user_id", "conversation_id"], name: "index_conversations_users_on_user_id_and_conversation_id", using: :btree
   add_index "conversations_users", ["user_id"], name: "index_conversations_users_on_user_id", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

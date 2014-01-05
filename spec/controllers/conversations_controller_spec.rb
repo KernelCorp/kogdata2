@@ -26,9 +26,9 @@ describe ConversationsController do
   let(:valid_attributes) { { "theme" => "MyString"} }
 
   before :each do
-    @owner =  FactoryGirl.create :user, email: 'owner@example.com', conversations: []
-    @users = [FactoryGirl.create(:user, email: '1@example.com', conversations: []),
-              FactoryGirl.create(:user, email: '2@example.com', conversations: []),
+    @owner =  FactoryGirl.create :user, conversations: []
+    @users = [FactoryGirl.create(:user, conversations: []),
+              FactoryGirl.create(:user, conversations: []),
               @owner]
   end
 

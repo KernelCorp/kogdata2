@@ -1,5 +1,8 @@
 Kogdata2::Application.routes.draw do
-  resources :conversations
+
+  resources :conversations do
+    resources :messages
+  end
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
