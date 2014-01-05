@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105091734) do
+ActiveRecord::Schema.define(version: 20140105124107) do
 
   create_table "conversations", force: true do |t|
     t.string   "theme"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20140105091734) do
   add_index "conversations_users", ["conversation_id"], name: "index_conversations_users_on_conversation_id", using: :btree
   add_index "conversations_users", ["user_id", "conversation_id"], name: "index_conversations_users_on_user_id_and_conversation_id", using: :btree
   add_index "conversations_users", ["user_id"], name: "index_conversations_users_on_user_id", using: :btree
+
+  create_table "event_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "messages", force: true do |t|
     t.text     "text"
