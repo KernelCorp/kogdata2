@@ -36,6 +36,14 @@ class Ability
     can :manage, Message do |message|
       (user.conversations.include? message.conversation) || message.conversation.nil?
     end
-
+    if user.is_a? Photographer
+      can [:show, :index], Event
+    end
+    if user.is_a? Customer
+      can [:new, :create], Event
+      can [:edit, :update, :destroy, :index, :show], Event do |event|
+        event.customer == user
+      end
+    end
   end
 end

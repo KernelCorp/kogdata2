@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :photographer do
     name     'photographer'
     surname  'surphotographer'
-    sequence(:email) {|n| "email#{n}@example.com" }
+    sequence(:email) {|n| "photoemail#{n}@example.com" }
     type 'Photographer'
     password 'password'
     conversations { [] }
