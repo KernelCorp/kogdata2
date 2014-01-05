@@ -1,5 +1,7 @@
 Kogdata2::Application.routes.draw do
 
+  resources :events
+
   resources :conversations do
     resources :messages
   end
