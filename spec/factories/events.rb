@@ -7,6 +7,6 @@ FactoryGirl.define do
     time "11:00"
     event_type nil
     budget 1
-    customer nil
+    association :customer, factory: :customer
   end
 end

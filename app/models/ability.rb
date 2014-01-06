@@ -38,11 +38,18 @@ class Ability
     end
     if user.is_a? Photographer
       can [:show, :index], Event
+      can [:new, :create], EventRequest
+      can [:show, :destroy], EventRequest do |request|
+        user.event_requests.include? request
+      end
     end
     if user.is_a? Customer
       can [:new, :create], Event
       can [:edit, :update, :destroy, :index, :show], Event do |event|
         event.customer == user
+      end
+      can [:show, :index], EventRequest do |request|
+        user.events.include? request.event
       end
     end
   end
