@@ -9,6 +9,8 @@ gem 'devise'
 
 gem 'cancan'
 
+gem 'paperclip'
+
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
