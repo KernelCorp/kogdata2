@@ -1,6 +1,6 @@
 Kogdata2::Application.routes.draw do
 
-  resources :images
+  resources :images, only: [:destroy]
 
   resources :events do
     resources :event_requests, except: [:edit, :update]
@@ -8,6 +8,10 @@ Kogdata2::Application.routes.draw do
 
   resources :conversations do
     resources :messages
+  end
+
+  resources :photographer do
+    resources :images, only: [:index]
   end
 
   devise_for :users

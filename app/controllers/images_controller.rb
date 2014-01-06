@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
     @image.destroy
     authorize! :destroy, @image
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to photographer_images_url(current_user) }
       format.json { head :no_content }
     end
   end
