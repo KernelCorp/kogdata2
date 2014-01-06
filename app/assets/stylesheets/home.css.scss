@@ -1,0 +1,634 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//- require jquery.ui
+//- require jqurey.ui.all
+//= require fullcalendar
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "font-awesome";
+@import "header";
+@import "footer";
+@import "fonts";
+@import "calendar";
+
+/* ---  Fix to working spin  --- */
+@-moz-keyframes spin {
+	from { -moz-transform: rotate(0deg); }
+	to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+	from { -webkit-transform: rotate(0deg); }
+	to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+/* ---  END fix ---  */
+
+body {
+	margin-top: 0px;
+	font-size: 14px;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	background: url(/images/header/background.png) 0 0
+}
+
+.main-container{
+	margin-top: 10px;
+}
+
+.add-event-container
+{
+	h4{
+	font-family: "Comfortaa-bold";
+	font-size: 29px;
+	line-height: 32px;
+	text-align: center;
+	margin-bottom: 30px;
+	color: #516162;
+	}
+
+}
+
+.new_event
+{
+	margin: 0 auto;
+	.invalid {
+		background: orange;
+	}
+	.invalid_message{
+		display: none;
+		font-size: 20px;
+		font-family: opensans-regular;
+	}
+	font-family: "OpenSans-bold";
+	font-size: 30px;
+	width: 400px;
+	text-align: left;
+	color: #ff6060;
+
+	.date-container{
+	#event_day{
+		width: 55px;
+	}
+	#event_month{
+		width: 180px;
+	}
+	#event_year{
+		width: 108px;
+	}
+
+	}
+	.start-time-container{
+		display: inline;
+		margin-bottom: 20px;
+	#event_hour{
+		width: 68px;
+		margin-left: 5px;
+	}
+	#event_minute{
+		width: 70px;
+		margin-right: 5px;
+	}
+	label{
+		width: 190px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	}
+	#event_location, #event_description,  #event_price, .start-time-container {
+		width: 370px;
+		margin-bottom: 20px;
+		margin-right: 0px;
+		text-align: left;
+		color: #516162;
+	}
+	#event_price{
+		margin-top: 10px;
+	}
+
+	#event_type{
+		width: 383px;
+		margin-bottom: 20px;
+	}
+
+	#event_description{
+		height: 80px;
+	}
+	#event_submit{
+		margin: 0 auto;
+		background: -webkit-linear-gradient(top, #ff6060, #bb4646);
+		background: linear-gradient(top, #ff6060, #bb4646);
+		border-radius: 5px;
+		padding: 5px 10px;
+		border: none;
+		color: #ffffff;
+		width: auto;
+	}
+	.submit-container{
+		text-align: center;
+	}
+}
+
+input::-webkit-input-placeholder{
+	color:#516162;
+}
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color:#516162;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color:#516162;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color:#516162;
+}
+
+
+textarea::-webkit-input-placeholder{
+	color:#516162;
+}
+
+textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color:#516162;
+}
+
+textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color:#516162;
+}
+
+textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color:#516162;
+}
+
+
+form.new_event
+{
+	text-align: left;
+	input, label, textarea, select{
+	font-family: "OpenSans-bold";
+	font-size: 25px;
+	line-height: 28px;
+	box-sizing: padding-box;
+	height: auto;
+	text-align: left;
+	color: #516162;
+	width: 100%;
+	}
+	.date-container, .start-time-container
+	{
+	padding-bottom: 10px;
+	select, input{
+		margin-right: 5px;
+	}
+	.invalid {
+		background: orange;
+	}
+
+	}
+}
+
+
+#wrap {
+	width: auto;
+	margin: 0 auto;
+}
+
+div#external-events {
+	padding: 0 10px;
+	border: 1px solid #ccc;
+	background: #eee;
+	text-align: left;
+}
+
+#external-events h4 {
+	font-size: 16px;
+	margin-top: 0;
+	padding-top: 1em;
+}
+
+.external-event { /* try to mimick the look of a real event */
+	margin: 10px 0;
+	padding: 2px 4px;
+	background: #3366CC;
+	color: #fff;
+	font-size: .85em;
+	cursor: pointer;
+}
+
+#external-events p {
+	margin: 1.5em 0;
+	font-size: 11px;
+	color: #666;
+}
+
+#external-events p input {
+	margin: 0;
+	vertical-align: middle;
+}
+
+div.container{
+	h1 {
+	 display: inline-block;
+	}
+}
+
+input.span2{
+	height: 30px;
+}
+.calendar-container
+{
+	text-align: center;
+	font-size: 14px;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+
+.description-label
+{
+	overflow: hidden;
+	word-wrap: break-word;
+	max-height: 80px;
+	width: 135px;
+}
+
+
+#EventTitle
+{
+	width: auto;
+	max-width: 150px;
+}
+
+#EventDescription
+{
+	width:auto;
+	max-width: 150px;
+}
+
+#external-event-template
+{
+	width:auto;
+	max-width: 150px;
+}
+
+#events-label-container
+{
+	width:auto;
+	max-width: 150px;
+	margin-right: 0px;
+}
+
+p4
+{
+	font-size: 11px;
+}
+
+.uploadImage {
+	box-sizing: border-box;
+	width: 160px;
+	text-transform: uppercase;
+	position: relative;
+	input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		filter: alpha(opacity = 0);
+		-ms-filter: "alpha(opacity = 0)";
+		width: 100%;
+		height: 100%;
+	}
+}
+
+#images {
+	list-style: none;
+	height: 50px;
+	text-align: center;
+	padding: 0;
+	margin: 0 auto;
+	li.image {
+		width: 50px;
+		float: left;
+		position: relative;
+		margin-right: 20px;
+		.deleteImage {
+			position: absolute;
+			top: -15px;
+			right: -10px;
+			cursor: pointer;
+		}
+	}
+}
+
+
+.main_box{
+	margin: 0 auto;
+	width: 1000px;
+}
+.sidebar{
+	float: left;
+	width: 20%;
+}
+.content_box{
+	margin-left: 22%;
+}
+.list_box{
+	overflow-y: scroll;
+	max-height: 70%;
+}
+.message_box{
+	padding-left: 20px;
+	border-bottom: 2px solid #aaaaaa;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+}
+.message_content{
+
+}
+.avatar_in_box{
+	float: left;
+}
+.conversation_box{
+	padding-left: 20px;
+	border-bottom: 2px solid #aaaaaa;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+}
+.conversation_box:hover{
+	background: #F5F5F5;
+	border-radius: 10px;
+	border-left: 1px solid #aaaaaa;
+	border-right: 1px solid #aaaaaa;
+}
+.social-btn
+{
+	width: 150px;
+	margin-top: 12px;
+}
+
+#forms
+{
+	padding: 120px 0 100px;
+}
+
+input.large
+{
+	height: 30px;
+}
+
+select#user_role
+{
+	max-width: 206px;
+}
+
+
+
+div#blac-div
+{
+	background-color: #000;
+	color: #999999;
+	maggin-top:0px;
+	maggin-bottom:5px;
+	padding-top: 2px;
+	height: 40px;
+	padding-left: 10px;
+	h5{;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	font-weight: 100;
+	}
+}
+
+div#for-close
+{
+	padding-right: 10px;
+	float: right;
+	a#close-button{
+	color: #999999;
+	font-size: 14px;
+	cursor: pointer;
+	}
+	a#close-button:link
+	{
+	color: #999999
+	}
+	a#close-button:hover
+	{
+	color: #ffffff;
+	text-decoration: none;
+	}
+
+}
+
+
+div.mainbox{
+	height: 200px;
+
+	textarea#send-message-input
+	{
+	width: 100%;
+	height: 90px;
+	resize: none;
+	}
+}
+#iconic{
+	text-align: center;
+}
+
+#black
+{
+	background-color: #000;
+	color: #999999;
+}
+
+#send-message-button-for-list
+{
+	float:left
+}
+#send-message-button
+{
+	float:right
+}
+div#events-container.container
+{
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+div.span10.offset2
+{
+	margin-left: 0px;
+}
+
+
+#create-event-button
+{
+	float: right
+}
+
+#error-div
+{
+	display: none;
+}
+
+#date-input
+{
+	display: none;
+}
+
+form#add-event-form
+{
+	#title-input
+	{
+	font-size: 11px;
+	width: 195px;
+	}
+	#description-input
+	{
+
+	font-size: 11px;
+	width: 195px;
+	}
+	label
+	{
+	margin-right: 10px;
+	font-size: 11px;
+	}
+}
+.fc-border-separate
+{
+	tbody
+	{  cursor: hand;  }
+}
+
+.selected-day
+{
+	background-color: #EAF7D6;
+}
+
+#inside-popover
+{
+	display: none
+}
+
+div.mainbox-add{
+	width: 200px;
+	padding-bottom: 10px;
+	data-html: true;
+	font-size: 8px
+}
+
+.flying {
+	margin: 5px 0 10px 0;
+	text-align: right;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.favicon {
+	width: 16px;
+	height: 16px;
+}
+
+.cursor:hover
+{
+	cursor: pointer;
+}
+
+#text-name
+{
+	display:none
+}
+
+
+#text-email
+{
+	display:none
+}
+
+a {
+	b {
+		color: #003377;
+	}
+}
+
+/* --- From http://fontawesome.veliovgroup.com/ --- */
+.icon-spin {
+	display: inline-block;
+	-moz-animation: spin 1s infinite linear;
+	-o-animation: spin 1s infinite linear;
+	-webkit-animation: spin 1s infinite linear;
+	animation: spin 1s infinite linear;
+}
+/* --- CUSTOM CHECKBOX --- */
+input[type='checkbox'] {
+	width: 16px;
+}
+input[type='checkbox']:before {
+	position: absolute;
+	background-image: url('/assets/checkbox.png');
+	content: '';
+	background-position: 0 0px;
+	width: 16px;
+	height: 16px;
+	margin-top: -2px;
+}
+
+input[type='checkbox']:checked:before {
+	background-position: 0 -16px;
+}
+/* --- END CUSTOM CHECKBOX --- */
+
+.back_white_box
+{
+	$border-raduis: 10px;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: $border-raduis;
+	margin-bottom: 10px;
+	min-height: 180px;
+	padding: 10px ($border-raduis + 5);
+}
+
+
+div.role-group{
+	max-width: 390px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 20px;
+	button#options.active{
+		background-image: linear-gradient(to bottom, #e25957, #bc4b49);
+		background-color: #BC4B49;
+	}
+
+	button#options.active:hover{
+		background-color: #bc4b49;
+	}
+
+	button.btn{
+		font-family: 'opensans';
+		text-shadow: none;
+		color: #ffffff;
+		background-image: linear-gradient(to bottom,  #d2e6d5, #bbd2be);
+		width: 160px;
+		text-align: center;
+		display: inline;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+
+	button.btn:hover{
+		//background-image: linear-gradient(to bottom,  #bbd2be, #9fb1a1);
+		background-color: #bbd2be;
+	}
+
+	.client-option{
+		//float: left;
+	}
+	.contractor-option
+	{
+		margin-left: 30px;
+	}
+}

@@ -1,0 +1,75 @@
+//= require elastislide
+.js .gallery {
+  width: 100%;
+  position: relative;
+}
+
+.gallery .to_right
+{
+	margin-right: 0;
+}
+
+.lt-ie8 .elastislide-list {
+  display: none;
+}
+
+.left-column
+{
+  width: 20%;
+  float: left;
+}
+
+.right-column
+{
+  width: 78%;
+  float:right;
+  margin-left: 2%;
+  padding-top: 0px;
+  h3
+  {
+    margin-top: 0px;
+  }
+}
+
+
+.content
+{
+  margin: 0 auto;
+  width: 650px;
+  text-align: left;
+  direction: ltr;
+  position: relative;
+}
+
+#layout
+{
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
+.btn-container
+{
+  #message-btn
+  {
+    margin: 15px auto;
+  }
+}
+
+div.right-column{
+div.container.demo-4
+  {
+    margin-right: 0px;
+    margin-left: 0px;
+    width: auto;
+
+  }
+}
+
+#date-container-1
+{
+  margin-left: 10px;
+}
+#events-container-profile
+{
+  padding-left: 10px;
+}

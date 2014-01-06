@@ -1,0 +1,143 @@
+/* Elastislide Style */
+
+.elastislide-list {
+	list-style-type: none;
+	display: none;
+}
+
+.no-js .elastislide-list {
+	display: block;
+}
+
+.elastislide-carousel ul li {
+	min-width: 20px; /* minimum width of the image (min width + border) */
+}
+
+.elastislide-wrapper {
+	position: relative;
+	/*background-color: #fff;*/
+	margin: 0 auto;
+	min-height: 60px;
+	/*box-shadow: 1px 1px 3px rgba(0,0,0,0.2);*/
+}
+
+.elastislide-wrapper.elastislide-loading {
+	background-image: url(img/loading.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.elastislide-horizontal {
+	/*padding: 10px 40px;*/
+}
+
+.elastislide-vertical {
+	padding: 40px 10px;
+}
+
+.elastislide-carousel {
+	overflow: hidden;
+	position: relative;
+}
+
+.elastislide-carousel ul {
+	position: relative;
+	display: block;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	-ms-transform: translateX(0px);
+	-o-transform: translateX(0px);
+	transform: translateX(0px);
+}
+
+.elastislide-horizontal ul {
+	white-space: nowrap;
+}
+
+.elastislide-carousel ul li {
+	margin: 0;
+	-webkit-backface-visibility: hidden;
+}
+
+.elastislide-horizontal ul li {
+	display: inline-block;
+}
+
+.elastislide-vertical ul li {
+	display: block;
+}
+
+.elastislide-carousel ul li a {
+	display: inline-block;
+	width: 100%;
+}
+
+.elastislide-carousel ul li a img {
+	display: block;
+	max-width: 100%;
+}
+
+/* Navigation Arrows */
+
+.elastislide-wrapper span.nav {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.3);
+	width: 66px;
+	height: 100%;
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+.elastislide-wrapper span.nav i {
+	background: url(img/gallery_arrows.png) no-repeat 0px 0px;
+	height: 91px;
+	max-width: 90%;
+	margin-top: -46px;
+	position: absolute;
+	top: 50%;
+	width: 66px;
+}
+
+.elastislide-wrapper span.nav:hover {
+	background: rgba(255, 255, 255, 0.7);
+	opacity: 1.0;
+}
+
+.elastislide-horizontal span.nav {
+	left: 0px;
+	top: 0px;
+}
+
+.elastislide-horizontal span.nav.elastislide-next {
+	right: 0px;
+	left: auto;
+}
+
+.elastislide-horizontal span.nav.elastislide-next i {
+	background-position: -66px 0px;
+}
+
+@media (max-width: 979px) {
+	.elastislide-wrapper span.nav
+	{
+		max-width: 7%;
+	}
+	.elastislide-wrapper span.nav i {
+		background: rgba(100, 100, 100, 0.8) url(img/nav.png) no-repeat 4px 3px;
+		border-radius: 14px;
+		height: 23px;
+		width: 23px;
+		margin-top: -12px;
+		margin-left: 8%;
+		position: absolute;
+		top: 50%;
+	}
+
+	.elastislide-horizontal span.nav.elastislide-next i {
+		background-position: 4px -17px;
+	}
+}

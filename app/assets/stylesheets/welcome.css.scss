@@ -1,0 +1,99 @@
+@import "header";
+@import "footer";
+
+@font-face {
+	font-family: Comfortaa-bold;
+	src: url(/fonts/comfortaa-bold.ttf?) format('truetype');
+}
+@font-face {
+	font-family: Comfortaa-regular;
+	src: url(/fonts/comfortaa-regular.ttf?) format('truetype');
+}
+
+body {
+	background: url(/images/header/background.png) 0 0
+}
+
+.logo
+{
+	color: #e25957;
+	font-family: 'comfortaa-bold';
+	font-size: 90px;
+	line-height: initial;
+  text-align: center;
+}
+.text
+{
+	color: #00525a;
+	font-family: 'comfortaa-regular';
+	font-size: 24px;
+	text-align: center;
+}
+
+.text_header
+{
+	color: #e25957;
+	font-family: 'comfortaa-bold';
+	font-size: 36px;
+	line-height: 42px;
+	margin-bottom: 15px;
+}
+
+ul.list
+{
+	margin-left: 0px;
+	color: #00525a;
+	font-family: 'comfortaa-bold';
+	font-size: 24px;
+	list-style: none;
+	li{
+		line-height: 28px;
+	}
+}
+
+.text-to-left
+{
+	text-align: left;
+}
+.text-to-right
+{
+	text-align: right;
+}
+
+.center
+{
+	text-align: center;
+}
+
+div.try_it
+{
+	line-height: initial;
+}
+
+@media (max-height: 655px) and (min-width: 979px) {
+	div.try_it
+	{
+		bottom: 68px;
+		left: 50%;
+		margin-left: -150px;
+		position: fixed;
+		width: 300px;
+	}
+}
+
+a.try_it
+{
+	background-color: #e25957;
+	border-radius: 15px;
+	color: #ffffff;
+	font-family: 'comfortaa-bold';
+	font-size: 36px;
+	padding: 5px 10px;
+	text-align: center;
+}
+a.try_it:hover
+{
+	background-color: #983c3b;
+	color: #ffffff;
+	text-decoration: none;
+}
