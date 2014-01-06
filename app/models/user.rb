@@ -22,4 +22,10 @@ class User < ActiveRecord::Base
     end
   end
   accepts_nested_attributes_for :conversations
+  before_create :set_unique_avatar_name
+
+  protected
+  def set_unique_avatar_name
+    self.avatar.instance_write :file_name, "#{SecureRandom.uuid}"
+  end
 end
