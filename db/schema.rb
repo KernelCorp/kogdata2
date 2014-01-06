@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105171303) do
+ActiveRecord::Schema.define(version: 20140106091609) do
 
   create_table "conversations", force: true do |t|
     t.string   "theme"
@@ -60,6 +60,18 @@ ActiveRecord::Schema.define(version: 20140105171303) do
 
   add_index "events", ["customer_id"], name: "index_events_on_customer_id", using: :btree
   add_index "events", ["event_type_id"], name: "index_events_on_event_type_id", using: :btree
+
+  create_table "images", force: true do |t|
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.integer  "photographer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["photographer_id"], name: "index_images_on_photographer_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.text     "text"
@@ -111,6 +123,10 @@ ActiveRecord::Schema.define(version: 20140105171303) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

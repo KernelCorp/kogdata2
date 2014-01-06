@@ -1,5 +1,7 @@
 Kogdata2::Application.routes.draw do
 
+  resources :images
+
   resources :events do
     resources :event_requests, except: [:edit, :update]
   end

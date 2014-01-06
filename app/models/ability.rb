@@ -42,6 +42,9 @@ class Ability
       can [:show, :destroy], EventRequest do |request|
         user.event_requests.include? request
       end
+      can :destroy, Image do |image|
+        image.photographer == user
+      end
     end
     if user.is_a? Customer
       can [:new, :create], Event
