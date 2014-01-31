@@ -1,0 +1,31 @@
+.back_white_box
+  %h2.event_title
+    =t(:events)
+
+  %table.table.event_table.table-striped
+    %thead
+      %tr
+        %th
+          id
+        %th
+          = t(:type_of_event)
+        %th
+          = t(:date_text)
+        %th
+          = t(:count_responses)
+      %tbody
+        - events.each do |event|
+          %tr
+            %td
+              %a{ :href => '#', :class => 'show_event_link'}
+                = event.id
+            %td
+              = event.type
+            %td
+              = event.date.strftime("%d.%m.%Y")
+            %td.center
+              - if event.responses.count > 0
+                %a{ :href => '#', :class => 'show_responses_link', :event_id => event.id}
+                  = event.event_requests.count
+              - else
+                = event.event_requests.count
