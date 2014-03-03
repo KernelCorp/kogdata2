@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
   # GET /images.json
   def index
     @images = @photographer.images.all
-    layout 'photographer'
+    render layout: 'photographer'
   end
 
   # DELETE /images/1
