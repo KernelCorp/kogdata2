@@ -4,14 +4,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :name, :surname, :vk, :facebook, :google, :city, :avatar
+  attr_accessible :email, :password, :password_confirmation,
+                  :name, :surname, :vk, :facebook, :google, :city, :avatar,
+                  :remember_me
 
   has_attached_file :avatar
 
   has_and_belongs_to_many :conversations do
     def create!(attributes = nil, options = {}, &block)
-      conv = super attributes, options, &block
-      conv.owner = proxy_association.owner
+      conv = build attributes, options, &block
       conv.save!
       conv
     end

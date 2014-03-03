@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  layout Proc.new { current_user.is_a?(Customer) ? 'customer' : 'photographer' }
 
   # GET /events
   # GET /events.json

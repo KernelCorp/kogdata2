@@ -1,11 +1,9 @@
 !!!
--# --- "!!!" THIS IS DOCTYPE, DON'T REMOVE !!!!!!!!!!!!!!!!!!!!! ----------
 %html
   %head
     = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
-    = javascript_include_tag 'customer_calendar', 'data-turbolinks-track' => false
     %title Kogdata
   %body
     = render 'application/header'
@@ -13,7 +11,7 @@
       .row
         .span5
           #user_info_block
-            = render partial: 'application/customer_info'
+            = render partial: 'application/photographer_info'
             #left_block
               = yield :left
         .span7

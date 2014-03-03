@@ -1,0 +1,18 @@
+#contractor_skills
+  .row-fluid
+    .span5
+      .left_bold_text
+        = t(:contractor_skills)
+    .span7
+      .right_text
+        %ul
+          - [1, 2, 3].each do |skill|
+            %li Здесь будут умения #{skill}
+  .row-fluid
+    .span5
+      .left_bold_text
+        = t(:contractor_cost)
+    .span7
+      .right_text
+        = @user.price || '0'
+        = t(:rusrubles)

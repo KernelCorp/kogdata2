@@ -11,6 +11,10 @@ gem 'cancan'
 
 gem 'paperclip'
 
+gem 'fullcalendar-rails'
+
+gem 'bootstrap-sass', '~> 2.3.2'
+
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
@@ -30,6 +34,9 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+gem 'activerecord-session_store'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

@@ -1,16 +1,34 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
-= render "devise/shared/links"
+.container#forms.reg-container
+	%h2.reg-title #{t(:sign_in_to)} Kogdata
+	.container-fluid
+		.row-fluid
+			//= render "devise/shared/links"
+			%br
+			= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+				= devise_error_messages!
+				.control-wrapper
+					- if flash.count
+						- flash.each do |name, msg|
+							.alert.alert-error
+								= msg
+					.control-group
+						= f.text_field :name, :class => 'large', :autofocus => true,  :placeholder => t(:name)
+					.control-group
+						= f.select :role, options_for_select([[t(:client), :client], [t(:contractor), :contractor]])
+					.control-group#price-div
+						= f.text_field :price, :id => "price-field",:class => 'large', :placeholder => t(:price)
+					.control-group
+						%label
+							= t(:email)
+						= f.email_field :email, :class => 'large'
+					.control-group
+						%label
+							= t(:password)
+						= f.password_field :password, :class => 'large'
+					.control-group#submit
+						= f.submit t(:do_sign_in), :class => "btn btn-danger btn-large", :id => "reg-submit"
+	.left-column
+		.soc-links-container
+			%a.social-btn#vk-btn{:href => "/users/auth/vkontakte"}
+			%a.social-btn#twit-btn{:href => "/users/auth/twitter"}
+			%a.social-btn#face-btn{:href => "/users/auth/facebook"}
