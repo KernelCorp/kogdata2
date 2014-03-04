@@ -24,6 +24,13 @@ describe EventsController do
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { "city" => "Novosib", date: Date.today } }
+  let(:attribute_with_diffuse_date) { { "city" => "Novosib",
+                                        year:  Date.today.year,
+                                        month: Date.today.month,
+                                        day:   Date.today.month,
+                                        hour:   23,
+                                        minute: 59
+                                      } }
 
   before :each do
     @customer     = FactoryGirl.create :customer
@@ -79,26 +86,46 @@ describe EventsController do
       it "creates a new Event" do
         sign_in @customer
         expect {
-          post :create, {:event => valid_attributes}
+          post :create, {event: valid_attributes}
         }.to change(Event, :count).by(1)
       end
 
       it "assigns a newly created event as @event" do
         sign_in @customer
-        post :create, {:event => valid_attributes}
+        post :create, {event: valid_attributes}
         assigns(:event).should be_a(Event)
         assigns(:event).should be_persisted
       end
 
       it "redirects to the created event" do
         sign_in @customer
-        post :create, {:event => valid_attributes}
+        post :create, {event: valid_attributes}
         response.should redirect_to(Event.last)
       end
     end
 
-    describe "with invalid params" do
+    describe "with params with diffuse date" do
+      it "creates a new Event" do
+        sign_in @customer
+        expect {
+          post :create, {event: attribute_with_diffuse_date}
+        }.to change(Event, :count).by(1)
+      end
+
+      it "assigns a newly created event as @event" do
+        sign_in @customer
+        post :create, {event: attribute_with_diffuse_date}
+        assigns(:event).should be_a(Event)
+        assigns(:event).should be_persisted
+      end
+
+      it "redirects to the created event" do
+        sign_in @customer
+        post :create, {event: attribute_with_diffuse_date}
+        response.should redirect_to(Event.last)
+      end
     end
+
   end
 
   describe "PUT update" do
@@ -111,13 +138,13 @@ describe EventsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Event.any_instance.should_receive(:update).with({ "city" => "" })
-        put :update, {:id => event.to_param, :event => { "city" => "" }}
+        put :update, {:id => event.to_param, event: { "city" => "" }}
       end
 
       it "assigns the requested event as @event" do
         sign_in @customer
         event = @customer.events.create! valid_attributes
-        put :update, {:id => event.to_param, :event => valid_attributes}
+        put :update, {:id => event.to_param, event: valid_attributes}
         assigns(:event).should eq(event)
       end
     end

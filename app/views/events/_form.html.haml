@@ -1,28 +1,30 @@
-= form_for @event do |f|
-  - if @event.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :city
-    = f.text_field :city
-  .field
-    = f.label :date
-    = f.text_field :date
-  .field
-    = f.label :time
-    = f.text_field :time
-  .field
-    = f.label :event_type
-    = f.text_field :event_type
-  .field
-    = f.label :budget
-    = f.number_field :budget
-  .field
-    = f.label :customer
-    = f.text_field :customer
-  .actions
-    = f.submit 'Save'
+.add-event-container
+	%h4
+		= t :fill_in_event
+= form_for @event, remote: true do |f|
+	.invalid_message
+		%p
+			Задайте корректные данные!
+	.date-container
+		%input{id: 'event_day', name: 'event[day]', type: 'number', min: 1, max: 31, autocomplete: :off}
+		%select{id: 'event_month', name: 'event[month]'}
+			= for i in 1..12
+				%option{value: i}
+					= t('date.month_names')[i]
+		%select{id: 'event_year', name: 'event[year]'}
+			- year = Date.current.year
+			%option{value: year}
+				= year
+			%option{value: year+1}
+				= year+1
+	= f.text_field :location, placeholder: t(:your_town)
+	= f.select :event_type, EventType.all
+	= f.text_area :description, placeholder: t(:description)
+	.start-time-container
+		= f.label t(:start_time)
+		%input{id: 'event_hour', name: 'event[hour]', value: '10', type: 'number', min: 0, max: 23} :
+		%input{id: 'event_minute', name: 'event[minute]', value: '00', type: 'number', min: 0, max: 59}
+	= f.text_field :price, placeholder: t(:budget)
+	%br
+	.submit-container
+		= f.submit  t(:create_event), :id => 'event_submit'

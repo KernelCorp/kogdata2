@@ -1,4 +1,9 @@
+#= require_tree ../events
+
 class @CalendarControllerBase
+
+  eventsController: null
+
   myEventColor:          '#2D46AD'
   otherEventColor:       '#4C85BC'
   closedEventColor:      '#BABABA'
@@ -34,4 +39,5 @@ class @CalendarControllerBase
   }
 
   calendar_init: () ->
+    @eventsController = new EventsController()
     $(@calendar_selector).fullCalendar @fullCalendarOption

@@ -72,6 +72,9 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
+      event = params[:event]
+      params[:event][:date] = DateTime.new event[:year].to_i, event[:month].to_i, event[:day].to_i, event[:hour].to_i,
+                                           event[:minute].to_i if event[:date].blank?
       params.require(:event).permit(:city, :date, :time, :event_type_id, :budget, :customer_id)
     end
 end
