@@ -19,7 +19,7 @@ gem 'hamlbars', '~> 2.1'
 
 gem 'ember-rails'
 
-gem 'ember-source', '~1.4.0'
+gem 'ember-source', '~>1.4.0'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'

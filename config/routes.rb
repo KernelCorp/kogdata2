@@ -1,5 +1,7 @@
 Kogdata2::Application.routes.draw do
 
+  get "users/show"
+  get "user/show"
   resources :images, only: [:destroy]
 
   resources :events do
