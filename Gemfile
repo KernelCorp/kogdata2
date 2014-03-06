@@ -17,7 +17,7 @@ gem 'bootstrap-sass', '~> 2.3.2'
 
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '0.3.11'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -38,6 +38,11 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'activerecord-session_store'
+
+group :assets do
+  gem 'haml_coffee_assets'
+  gem 'execjs'
+end
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
