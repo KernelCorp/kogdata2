@@ -16,6 +16,7 @@ Kogdata2::Application.routes.draw do
     resources :images, only: [:index]
   end
 
+  resources :users
 
   devise_for :users
 
