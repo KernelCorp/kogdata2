@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation,
                   :name, :surname, :vk, :facebook, :google, :city, :avatar,
-                  :remember_me
+                  :remember_me, :type
 
   has_attached_file :avatar
 
