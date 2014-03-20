@@ -4,11 +4,11 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     @events.reset options.events
 
   routes:
-    "new"      : "newEvent"
-    "index"    : "index"
-    ":id/edit" : "edit"
-    ":id"      : "show"
-    ".*"        : "index"
+    "events/new"      : "newEvent"
+    "ievents/ndex"    : "index"
+    "events/:id/edit" : "edit"
+    "events/:id"      : "show"
+    "events/.*"       : "index"
 
   newEvent: ->
     @view = new Kogdata2.Views.Events.NewView(collection: @events)

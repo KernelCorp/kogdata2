@@ -1,17 +1,20 @@
 %h2.event_title
   Событие
-  = ' #' + id
+  = ' #' + @id
 %table.table.table-condensed.vertical-header
   %tbody
     %tr
       %th
         Дата
       %td
-        = date
+        = @date
     %tr
       %th
         Бюджет
       %td
-        = budget
+        = @budget
 %p
-= description
+= @description
+
+%a{href: '#/events/'}
+  К списку
