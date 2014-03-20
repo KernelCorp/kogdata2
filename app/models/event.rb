@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :date, :time, :budget, :description
+  attr_accessible :date, :budget, :description
 
   belongs_to :event_type
   belongs_to :customer, class_name: 'User'

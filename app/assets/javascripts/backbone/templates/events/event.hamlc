@@ -1,0 +1,11 @@
+%td
+  %a{href: '#events/' + @id}
+    = @id
+%td
+  = @date
+-#%td.center
+-#  - if event.responses.count > 0 and event.user_id == current_user.id
+-#    %a{ :href => '#', :class => 'show_responses_link', :event_id => event.id}
+-#      = event.responses.count
+-#  - else
+-#    = event.responses.count

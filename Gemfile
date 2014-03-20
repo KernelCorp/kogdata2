@@ -15,6 +15,9 @@ gem 'fullcalendar-rails'
 
 gem 'bootstrap-sass', '~> 2.3.2'
 
+gem 'haml_coffee_assets'
+
+gem 'rails-backbone'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '0.3.11'

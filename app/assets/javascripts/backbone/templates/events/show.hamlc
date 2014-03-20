@@ -1,0 +1,17 @@
+%h2.event_title
+  Событие
+  = ' #' + id
+%table.table.table-condensed.vertical-header
+  %tbody
+    %tr
+      %th
+        Дата
+      %td
+        = date
+    %tr
+      %th
+        Бюджет
+      %td
+        = budget
+%p
+= description

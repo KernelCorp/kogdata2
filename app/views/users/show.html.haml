@@ -1,2 +1,7 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+-content_for :left do
+  #events
+  :javascript
+    $(function() {
+      window.router = new Kogdata2.Routers.EventsRouter({events: #{current_user.events.to_json.html_safe}});
+      Backbone.history.start();
+    });

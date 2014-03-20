@@ -1,0 +1,15 @@
+.back_white_box
+  %h2.event_title
+    События
+
+  %table.table.event_table.table-striped
+    %thead
+      %tr
+        %th
+          id
+        %th
+          Дата
+
+    %tbody
+
+
