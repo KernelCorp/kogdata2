@@ -7,7 +7,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = (current_user.is_a?(Customer) ? current_user.events : Event.active).includes :event_type
+    if params[:user_id].blank?
+      @events = Event.active
+    else
+      @events = User.find(params[:user_id]).events
+    end
   end
 
   # GET /events/1
@@ -73,8 +77,17 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       event = params[:event]
-      params[:event][:date] = DateTime.new event[:year].to_i, event[:month].to_i, event[:day].to_i, event[:hour].to_i,
-                                           event[:minute].to_i if event[:date].blank?
+      if event[:date].blank? && !(event[:year].blank?  ||
+                                  event[:month].blank? ||
+                                  event[:day].blank?   ||
+                                  event[:hour].blank?  ||
+                                  event[:minute].blank?)
+        params[:event][:date] = DateTime.new event[:year].to_i,
+                                             event[:month].to_i,
+                                             event[:day].to_i,
+                                             event[:hour].to_i,
+                                             event[:minute].to_i
+      end
       params.require(:event).permit(:city, :date, :time, :event_type_id, :budget, :customer_id)
     end
 end

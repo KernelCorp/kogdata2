@@ -38,11 +38,11 @@ describe EventsController do
   end
 
   describe "GET index" do
-    it "assigns my events as @events if I a customer" do
+    it "assigns user's events as @events if I go to '/users/:user_id/events''" do
       sign_in @customer
       event = @customer.events.create! valid_attributes
       not_my_event = (FactoryGirl.create :customer).events.create! valid_attributes
-      get :index, {}
+      get :index, {user_id: @customer}
       assigns(:events).should eq([event])
       assigns(:events).should_not include not_my_event
     end
