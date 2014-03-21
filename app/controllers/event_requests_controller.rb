@@ -7,7 +7,7 @@ class EventRequestsController < ApplicationController
   # GET /event_requests
   # GET /event_requests.json
   def index
-    @event_requests = EventRequest.all
+    @event_requests = @event.event_requests
   end
 
   # GET /event_requests/1

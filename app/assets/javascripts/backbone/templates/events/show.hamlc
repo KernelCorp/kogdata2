@@ -20,5 +20,11 @@
           Бюджет
         %td
           = @budget
+      %tr
+        %th
+          Отклики
+        %td
+          %a{href: "#events/#{@id}/requests"}
+            = @event_requests_count
   %p
   = @description
