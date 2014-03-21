@@ -1,7 +1,8 @@
+-events_json = @user.events.to_json include: {event_type: {only: :name}}
 -content_for :left do
   #events
   :javascript
     $(function() {
-      window.router = new Kogdata2.Routers.EventsRouter({events: #{current_user.events.to_json.html_safe}});
+      window.router = new Kogdata2.Routers.EventsRouter({events: #{events_json.html_safe}});
       Backbone.history.start({root: '#{user_path current_user}'});
     });

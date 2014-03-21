@@ -5,7 +5,7 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
 
   routes:
     "events/new"      : "newEvent"
-    "ievents/ndex"    : "index"
+    ".*"              : "index"
     "events/:id/edit" : "edit"
     "events/:id"      : "show"
     "events/.*"       : "index"

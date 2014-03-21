@@ -2,6 +2,8 @@
   %a{href: '#events/' + @id}
     = @id
 %td
+  = @event_type.name
+%td
   = @date
 -#%td.center
 -#  - if event.responses.count > 0 and event.user_id == current_user.id

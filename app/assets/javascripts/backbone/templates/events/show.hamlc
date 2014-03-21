@@ -1,20 +1,24 @@
-%h2.event_title
-  Событие
-  = ' #' + @id
-%table.table.table-condensed.vertical-header
-  %tbody
-    %tr
-      %th
-        Дата
-      %td
-        = @date
-    %tr
-      %th
-        Бюджет
-      %td
-        = @budget
-%p
-= @description
+.back_white_box
+  %h2.event_title
+    Событие
+    = ' #' + @id
+  %table.table.table-condensed.vertical-header
+    %tbody
+      %tr
+        %th
+          Дата
+        %td
+          = @date
+      %tr
+        %th
+          Тип события
+        %td
+          = @event_type.name
 
-%a{href: '#/events/'}
-  К списку
+      %tr
+        %th
+          Бюджет
+        %td
+          = @budget
+  %p
+  = @description

@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = current_user.is_a?(Customer) ? current_user.events : Event.active
+    @events = (current_user.is_a?(Customer) ? current_user.events : Event.active).includes :event_type
   end
 
   # GET /events/1
