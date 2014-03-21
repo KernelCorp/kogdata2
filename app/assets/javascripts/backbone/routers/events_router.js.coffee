@@ -15,6 +15,7 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     $("#events").html(@view.render().el)
 
   index: ->
+    @events.reset().fetch()
     @view = new Kogdata2.Views.Events.IndexView(events: @events)
     $("#events").html(@view.render().el)
 

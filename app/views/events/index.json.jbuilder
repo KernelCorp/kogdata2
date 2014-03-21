@@ -1,4 +1,4 @@
 json.array!(@events) do |event|
-  json.extract! event, :id, :city, :date, :time, :event_type_id, :budget, :customer_id
+  json.partial! 'events/event', event: event
   json.url event_url(event, format: :json)
 end
