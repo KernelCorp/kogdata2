@@ -10,6 +10,12 @@ describe UsersController do
       response.should be_success
     end
 
+    it 'is my page' do
+      sign_in @user
+      get 'show', id: @user
+      assigns(:is_my_page).should be_true
+    end
+
     it 'assign assigns the requested user as @user' do
       get 'show', id: @user
       assigns(:user).should eq(@user)
