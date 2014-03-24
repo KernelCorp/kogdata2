@@ -3,6 +3,6 @@
   #events
   :javascript
     $(function() {
-      window.router = new Kogdata2.Routers.EventsRouter({events: []});
+      window.eventsRouter = new Kogdata2.Routers.EventsRouter({events: []});
       Backbone.history.start({root: '#{user_path current_user}'});
     });

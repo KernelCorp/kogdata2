@@ -1,0 +1,13 @@
+%tr
+  %td
+    Аватр
+  %td
+    Ретинг
+  %td
+    = if @photographer then @photographer.name else 'nil'
+  %td
+    %button.btn.btn-link.portfolio_button
+      %i.icon-k-small-portfolio
+
+    %button.btn.btn-link
+      %i.icon-k-small-message

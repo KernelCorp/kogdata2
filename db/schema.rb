@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140311122312) do
   add_index "conversations_users", ["user_id", "conversation_id"], name: "index_conversations_users_on_user_id_and_conversation_id", using: :btree
   add_index "conversations_users", ["user_id"], name: "index_conversations_users_on_user_id", using: :btree
 
-  create_table "event_requests", force: true do |t|
+  create_table "eventRequest", force: true do |t|
     t.integer  "event_id"
     t.integer  "photographer_id"
     t.datetime "created_at"

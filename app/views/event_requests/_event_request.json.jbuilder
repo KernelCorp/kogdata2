@@ -1,0 +1,2 @@
+json.extract! event_request, :id, :event_id, :photographer_id, :created_at, :updated_at
+json.photographer { json.name (event_request.photographer.nil? ? 'Django Freeman' : event_request.photographer.name) }

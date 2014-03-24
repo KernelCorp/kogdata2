@@ -27,10 +27,10 @@ describe EventRequestsController do
     end
     
     describe "GET index" do
-      it "assigns all event_requests as @event_requests" do
+      it "assigns all eventRequest as @eventRequest" do
         sign_in @event_request.event.customer
         get :index, {event_id: @event_request.event.id}
-        assigns(:event_requests).should eq([@event_request])
+        assigns(:eventRequest).should eq([@event_request])
       end
 
       it 'photographer can not see list of requests' do

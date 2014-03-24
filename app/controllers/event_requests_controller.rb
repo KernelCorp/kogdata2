@@ -4,24 +4,24 @@ class EventRequestsController < ApplicationController
   before_action :set_event
   load_and_authorize_resource
 
-  # GET /event_requests
-  # GET /event_requests.json
+  # GET /eventRequest
+  # GET /eventRequest.json
   def index
-    @event_requests = @event.event_requests
+    @event_requests = @event.event_requests.all
   end
 
-  # GET /event_requests/1
-  # GET /event_requests/1.json
+  # GET /eventRequest/1
+  # GET /eventRequest/1.json
   def show
   end
 
-  # GET /event_requests/new
+  # GET /eventRequest/new
   def new
     @event_request = @event.event_requests.build
   end
 
-  # POST /event_requests
-  # POST /event_requests.json
+  # POST /eventRequest
+  # POST /eventRequest.json
   def create
     @event_request = @event.event_requests.build photographer: current_user
 
@@ -37,8 +37,8 @@ class EventRequestsController < ApplicationController
     end
   end
 
-  # DELETE /event_requests/1
-  # DELETE /event_requests/1.json
+  # DELETE /eventRequest/1
+  # DELETE /eventRequest/1.json
   def destroy
     @event_request.destroy
     respond_to do |format|
