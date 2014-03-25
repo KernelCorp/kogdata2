@@ -1,7 +1,5 @@
 Kogdata2::Application.routes.draw do
 
-  get "users/show"
-  get "user/show"
   resources :portfolios, only: [:destroy]
 
   resources :events do
@@ -12,13 +10,13 @@ Kogdata2::Application.routes.draw do
     resources :messages
   end
 
-  resources :photographer do
+  resources :photographer, only: [] do
     resources :portfolios, only: [:index]
   end
 
   devise_for :users
 
-  resources :users do
+  resources :users, only: :show do
     resources :events, only: [:index]
   end
 

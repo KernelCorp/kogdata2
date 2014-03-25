@@ -11,4 +11,4 @@ class Kogdata2.Models.Event extends Backbone.Model
 class Kogdata2.Collections.EventsCollection extends Backbone.Collection
   model: Kogdata2.Models.Event
   url: ->
-    "#{Backbone.history.options.root}/events"
+    "#{Backbone.history.options.root}/events.json"

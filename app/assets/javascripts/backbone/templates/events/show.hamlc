@@ -13,7 +13,7 @@
         %th
           Тип события
         %td
-          = @event_type.name
+          = @event_type
 
       %tr
         %th

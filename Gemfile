@@ -15,7 +15,7 @@ gem 'bootstrap-sass', '~> 2.3.2'
 
 gem 'haml_coffee_assets'
 
-gem 'rails-backbone'
+gem 'rails-backbone', '~> 0.7.2'
 
 gem 'mongoid', '4.0.0.beta1', github: 'mongoid/mongoid'
 

@@ -2,7 +2,7 @@
   %a{href: "#events/#{@id}"}
     = @id
 %td
-  = @event_type.name
+  = @event_type
 %td
   = @date
 %td
