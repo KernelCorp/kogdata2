@@ -1,0 +1,26 @@
+-content_for :right do
+  .back_white_box
+    #contractor_skills
+      .row-fluid
+        .span5
+          .left_bold_text
+            = t(:contractor_skills)
+        .span7
+          .right_text
+            - if @user.skills.blank?
+              Ничего не умеет. Полная бездарность
+            -else
+              %ul
+              - @user.skills.each do |skill|
+                %li
+                  = skill
+      .row-fluid
+        .span5
+          .left_bold_text
+            = t(:contractor_cost)
+        .span7
+          .right_text
+            = '0'
+            = t(:rusrubles)
+
+= render 'portfolios/gallery', owner: @user

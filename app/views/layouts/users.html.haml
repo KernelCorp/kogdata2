@@ -4,6 +4,7 @@
     = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
+    = csrf_meta_tags
     %title Kogdata
   %body
     = render 'application/header'
@@ -11,10 +12,11 @@
       .row
         .span5
           #user_info_block
-            = render partial: 'application/photographer_info'
+            = user_info_tag @user
             #left_block
               = yield :left
         .span7
           #right_block
             = yield :right
+      = yield
     = render 'application/footer'

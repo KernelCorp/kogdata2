@@ -1,0 +1,20 @@
+.back_white_box
+  .to_right
+    -#= link_to t(:edit_profile), '/', id: 'user_edit_button'
+    -#  %i.icon-cog
+  .row-fluid
+    .user_avatar
+      .avatar
+        = image_tag current_user.avatar.url(:small)
+    .right_user_panel
+      %h1.info_user_name
+        = current_user.name
+
+      %h3.info_user_city
+        Город из таблицы
+
+      .right_user_panel
+        .info-block
+          %button.btn.btn-link-red#message_button
+            %i.icon-k-message
+            = t :my_messages
