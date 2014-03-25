@@ -1,6 +1,6 @@
-class EventRequest < ActiveRecord::Base
-  attr_accessible :photographer
+class EventRequest
+  include Mongoid::Document
   belongs_to :event
-  belongs_to :photographer, class_name: 'User'
+  belongs_to :photographer
   validates_uniqueness_of :event_id, scope: [:photographer_id]
 end

@@ -2,7 +2,7 @@ Kogdata2::Application.routes.draw do
 
   get "users/show"
   get "user/show"
-  resources :images, only: [:destroy]
+  resources :portfolios, only: [:destroy]
 
   resources :events do
     resources :event_requests, except: [:edit, :update]
@@ -13,7 +13,7 @@ Kogdata2::Application.routes.draw do
   end
 
   resources :photographer do
-    resources :images, only: [:index]
+    resources :portfolios, only: [:index]
   end
 
   devise_for :users

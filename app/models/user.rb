@@ -1,29 +1,55 @@
-class User < ActiveRecord::Base
+class User
+  include Mongoid::Document
+  include Mongoid::Paperclip
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation,
-                  :name, :surname, :vk, :facebook, :google, :city, :avatar,
-                  :remember_me, :type
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-  has_attached_file :avatar
+  ## Database authenticatable
+  field :email,              type: String, default: ""
+  field :encrypted_password, type: String, default: ""
 
-  has_and_belongs_to_many :conversations do
-    def create!(attributes = nil, options = {}, &block)
-      conv = build attributes, options, &block
-      conv.save!
-      conv
-    end
-    def build(attributes = nil, options = {}, &block)
-      conv = super attributes, options, &block
-      conv.owner = proxy_association.owner
-      conv
-    end
-  end
-  accepts_nested_attributes_for :conversations
+  ## Recoverable
+  field :reset_password_token,   type: String
+  field :reset_password_sent_at, type: Time
+
+  ## Rememberable
+  field :remember_created_at, type: Time
+
+  ## Trackable
+  field :sign_in_count,      type: Integer, default: 0
+  field :current_sign_in_at, type: Time
+  field :last_sign_in_at,    type: Time
+  field :current_sign_in_ip, type: String
+  field :last_sign_in_ip,    type: String
+
+  ## Confirmable
+  # field :confirmation_token,   type: String
+  # field :confirmed_at,         type: Time
+  # field :confirmation_sent_at, type: Time
+  # field :unconfirmed_email,    type: String # Only if using reconfirmable
+
+  ## Lockable
+  # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
+  # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
+  # field :locked_at,       type: Time
+
+  ## Custom fields
+  field :name,    type: String
+  field :surname, type: String
+
+  has_mongoid_attached_file :avatar
+
+  has_and_belongs_to_many :conversations
   before_create :set_unique_avatar_name
+
+  validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
 
   protected
   def set_unique_avatar_name

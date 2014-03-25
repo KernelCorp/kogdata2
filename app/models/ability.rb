@@ -42,7 +42,7 @@ class Ability
       can [:show, :destroy], EventRequest do |request|
         user.event_requests.include? request
       end
-      can :destroy, Image do |image|
+      can :destroy, Image::Portfolio do |image|
         image.photographer == user
       end
     end

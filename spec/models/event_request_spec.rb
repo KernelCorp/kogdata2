@@ -6,6 +6,6 @@ describe EventRequest do
     photographer = FactoryGirl.create :photographer
     event = FactoryGirl.create :event, customer: customer
     photographer.event_requests.create! event: event
-    expect {photographer.event_requests.create! event: event}.to raise_error(ActiveRecord::RecordInvalid)
+    expect {photographer.event_requests.create! event: event}.to raise_error(Mongoid::Errors::Validations)
   end
 end

@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  authorize_resource
   layout Proc.new { current_user.is_a?(Customer) ? 'customer' : 'photographer' }
 
   # GET /events
@@ -88,6 +88,6 @@ class EventsController < ApplicationController
                                              event[:hour].to_i,
                                              event[:minute].to_i
       end
-      params.require(:event).permit(:city, :date, :time, :event_type_id, :budget, :customer_id)
+      params.require(:event).permit :city, :date, :time, :event_type_id, :budget, :customer_id
     end
 end

@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_conversation, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  authorize_resource
 
   # GET /conversations
   # GET /conversations.json
@@ -71,6 +71,6 @@ class ConversationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversation_params
-      params[:conversation]
+      params.require(:conversation).permit :theme
     end
 end

@@ -5,7 +5,6 @@ FactoryGirl.define do
     name     'photographer'
     surname  'surphotographer'
     sequence(:email) {|n| "photoemail#{n}@example.com" }
-    type 'Photographer'
     password 'password'
     conversations { [] }
   end

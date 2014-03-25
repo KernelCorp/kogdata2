@@ -3,9 +3,8 @@
 FactoryGirl.define do
   factory :event do
     city "Moscow"
-    date Date.today
-    time "11:00"
-    event_type nil
+    date DateTime.now
+    event_type 'Type1'
     budget 1
     association :customer, factory: :customer
   end

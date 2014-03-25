@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ImagesController do
+describe PortfoliosController do
 
 
   before(:each) do
@@ -10,7 +10,7 @@ describe ImagesController do
 
   describe "GET index" do
     it "assigns all images as @images" do
-      image = @photographer.images.create! attachment: fixture_file_upload(Rails.root.join('spec',
+      image = @photographer.image_portfolios.create! attachment: fixture_file_upload(Rails.root.join('spec',
                                                                                            'images',
                                                                                            'test.png'),
                                                                            'image/png')
@@ -22,23 +22,16 @@ describe ImagesController do
   describe "DELETE destroy" do
     it "destroys the requested image" do
       sign_in @photographer
-      image = @photographer.images.create! attachment: fixture_file_upload(Rails.root.join('spec',
+      request.accept = 'application/json'
+      image = @photographer.image_portfolios.create! attachment: fixture_file_upload(Rails.root.join('spec',
                                                                                            'images',
                                                                                            'test.png'),
                                                                            'image/png')
       expect {
         delete :destroy, {:id => image.to_param}
-      }.to change(Image, :count).by(-1)
+      }.to change{@photographer.reload.image_portfolios.count}.by(-1)
     end
-    it 'only owner can destroy image' do
-      image = @photographer.images.create! attachment: fixture_file_upload(Rails.root.join('spec',
-                                                                                           'images',
-                                                                                          'test.png'),
-                                                                          'image/png')
-      expect {
-        delete :destroy, {:id => image.to_param}
-      }.to raise_error(CanCan::AccessDenied)
-    end
+
  end
 
 end

@@ -63,7 +63,7 @@ describe MessagesController do
         sign_in @sender
         expect {
           post :create, {conversation_id: @conversation.id, message: valid_attributes}
-        }.to change(Message, :count).by(1)
+        }.to change { @conversation.reload.messages.count }.by(1)
       end
 
       it "assigns a newly created message as @message" do
@@ -117,7 +117,7 @@ describe MessagesController do
       message = @conversation.messages.create! valid_attributes
       expect {
         delete :destroy, {conversation_id: @conversation.id, id: message.to_param}
-      }.to change(Message, :count).by(-1)
+      }.to change{ @conversation.reload.messages.count }.by(-1)
     end
   end
 

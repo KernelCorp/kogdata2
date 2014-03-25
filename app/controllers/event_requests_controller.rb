@@ -2,12 +2,12 @@ class EventRequestsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_event_request, only: [:show, :destroy]
   before_action :set_event
-  load_and_authorize_resource
+  authorize_resource
 
   # GET /eventRequest
   # GET /eventRequest.json
   def index
-    @event_requests = @event.event_requests.all
+    @event_requests = @event.event_requests
   end
 
   # GET /eventRequest/1

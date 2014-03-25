@@ -1,5 +1,6 @@
-class Message < ActiveRecord::Base
-  attr_accessible :text
-  belongs_to :user
-  belongs_to :conversation
+class Message
+  include Mongoid::Document
+  field :text
+  belongs_to  :user
+  embedded_in :conversation
 end

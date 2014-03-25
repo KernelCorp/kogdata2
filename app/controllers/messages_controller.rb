@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :set_conversation
-  load_and_authorize_resource
+  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /messages
   # GET /messages.json
@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = @conversation.messages.create! message_params
+    @message = @conversation.messages.build message_params
     authorize! :create, @message
     respond_to do |format|
       if @message.save
@@ -60,7 +60,7 @@ updated.' }
   def destroy
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to conversation_message_path(@conversation, @message) }
+      format.html { redirect_to conversation_path(@conversation) }
       format.json { head :no_content }
     end
   end
@@ -68,7 +68,7 @@ updated.' }
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
-      @message = Message.find(params[:id])
+      @message = @conversation.messages.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
-gem 'protected_attributes'
-
 gem 'devise'
 
 gem 'cancan'
@@ -19,8 +17,11 @@ gem 'haml_coffee_assets'
 
 gem 'rails-backbone'
 
-# Use mysql as the database for Active Record
-gem 'mysql2', '0.3.11'
+gem 'mongoid', '4.0.0.beta1', github: 'mongoid/mongoid'
+
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+
+gem 'aws-sdk', '~> 1.3.4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -39,8 +40,6 @@ gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
-gem 'activerecord-session_store'
 
 group :assets do
   gem 'haml_coffee_assets'

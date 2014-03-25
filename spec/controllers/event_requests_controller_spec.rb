@@ -30,7 +30,7 @@ describe EventRequestsController do
       it "assigns all eventRequest as @eventRequest" do
         sign_in @event_request.event.customer
         get :index, {event_id: @event_request.event.id}
-        assigns(:eventRequest).should eq([@event_request])
+        assigns(:event_requests).should eq([@event_request])
       end
 
       it 'photographer can not see list of requests' do
