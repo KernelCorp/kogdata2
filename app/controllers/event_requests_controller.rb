@@ -7,7 +7,11 @@ class EventRequestsController < ApplicationController
   # GET /eventRequest
   # GET /eventRequest.json
   def index
-    @event_requests = @event.event_requests
+    if @event.nil?
+      @event_requests = current_user.event_requests
+    else
+      @event_requests = @event.event_requests
+    end
   end
 
   # GET /eventRequest/1
