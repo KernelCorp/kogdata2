@@ -1,5 +1,7 @@
 Kogdata2::Application.routes.draw do
 
+  root 'main#index'
+
   resources :portfolios, only: [:destroy]
 
   resources :events do
