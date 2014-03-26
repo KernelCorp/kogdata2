@@ -9,7 +9,7 @@ class Kogdata2.Routers.EventRequestsRouter extends Backbone.Router
     "events/:event_id/requests/:id/edit" : "edit"
     "events/:event_id/requests/:id"      : "show"
     "events/:event_id/requests"          : "index"
-    "requsets"                           : "index"
+    "requests/"                          : "index"
 
   newEventRequest: ->
     @view = new Kogdata2.Views.EventRequests.NewView(collection: @eventRequest)

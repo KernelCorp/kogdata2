@@ -22,5 +22,12 @@
           .right_text
             = '0'
             = t(:rusrubles)
+-content_for :left do
+  #events
+  :javascript
+    $(function() {
+      window.eventRequestRouter = new Kogdata2.Routers.EventRequestsRouter({eventRequests: []});
+      Backbone.history.start({root: '#{user_path current_user}'});
+    });
 
 = render 'portfolios/gallery', owner: @user

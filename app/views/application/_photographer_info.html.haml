@@ -18,3 +18,9 @@
           %button.btn.btn-link-red#message_button
             %i.icon-k-message
             = t :my_messages
+        -if @is_my_page
+          .info-block
+            %a.btn.btn-link-red#my_events_button{href: '#requests/'}
+              %i.icon-k-event
+                = '005'
+              = t :my_event_requests

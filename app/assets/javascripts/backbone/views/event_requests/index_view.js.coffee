@@ -14,6 +14,7 @@ class Kogdata2.Views.EventRequests.IndexView extends Backbone.View
     @$("tbody").append(view.render().el)
 
   render: =>
+    $(".gallery").remove() if  $(".gallery")
     $(@el).html(@template(eventRequests: @options.eventRequests.toJSON() ))
     @addAll()
 
