@@ -24,7 +24,8 @@ class EventRequestsController < ApplicationController
   # POST /eventRequest.json
   def create
     @event_request = @event.event_requests.build photographer: current_user
-    respond_with @event, @event_request if @event_request.save
+    flash[:notice] = 'Event Request was successfully created.' if @event_request.save
+    respond_with @event, @event_request
   end
 
   # DELETE /eventRequest/1

@@ -21,15 +21,15 @@ describe UsersController do
       assigns(:user).should eq(@user)
     end
 
-    it 'render in customer layout if user is customer' do
+    it 'render template for customer' do
       get 'show', id: @user
-      response.should render_template('layouts/customer')
+      response.should render_template('users/show/customer')
     end
 
-    it 'render in photographer layout if user is photographer' do
+    it 'render template for photographer' do
       @user = FactoryGirl.create :photographer
       get 'show', id: @user
-      response.should render_template('layouts/photographer')
+      response.should render_template('users/show/photographer')
     end
 
   end

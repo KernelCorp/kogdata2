@@ -2,6 +2,7 @@ class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_conversation, only: [:show, :edit, :update, :destroy]
   authorize_resource
+  respond_to :json
 
   # GET /conversations
   # GET /conversations.json
@@ -9,58 +10,12 @@ class ConversationsController < ApplicationController
     @conversations = current_user.conversations
   end
 
-  # GET /conversations/1
-  # GET /conversations/1.json
-  def show
-  end
-
-  # GET /conversations/new
-  def new
-    @conversation = current_user.conversations.build
-  end
-
-  # GET /conversations/1/edit
-  def edit
-  end
-
   # POST /conversations
   # POST /conversations.json
   def create
     @conversation = current_user.conversations.build
-
-    respond_to do |format|
-      if @conversation.save
-        format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @conversation }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @conversation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /conversations/1
-  # PATCH/PUT /conversations/1.json
-  def update
-    respond_to do |format|
-      if @conversation.update(conversation_params)
-        format.html { redirect_to @conversation, notice: 'Conversation was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @conversation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /conversations/1
-  # DELETE /conversations/1.json
-  def destroy
-    @conversation.destroy
-    respond_to do |format|
-      format.html { redirect_to conversations_url }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'Conversation was successfully created.' if @conversation.save
+    respond_with @conversation
   end
 
   private
@@ -73,4 +28,6 @@ class ConversationsController < ApplicationController
     def conversation_params
       params.require(:conversation).permit :theme
     end
+
+    def conversation_url(conversation); conversation_messages_url(conversation) end
 end

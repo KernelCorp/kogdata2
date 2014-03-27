@@ -14,6 +14,7 @@ describe MessagesController do
     @sender = FactoryGirl.create :user, email: 'sender@example.com'
     @user   = FactoryGirl.create :user
     @conversation = @sender.conversations.create! users: [@user, @sender]
+    request.accept = 'application/json'
   end
 
   describe "GET index" do
@@ -37,23 +38,6 @@ describe MessagesController do
       message = @conversation.messages.create! valid_attributes
       expect { get :show, {conversation_id: @conversation.id, 
                            id: message.to_param} }.to raise_error(CanCan::AccessDenied)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new message as @message" do
-      sign_in @sender
-      get :new, {conversation_id: @conversation.id}
-      assigns(:message).should be_a_new(Message)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested message as @message" do
-      sign_in @sender
-      message = @conversation.messages.create! valid_attributes
-      get :edit, {conversation_id: @conversation.id, id: message.to_param}
-      assigns(:message).should eq(message)
     end
   end
 

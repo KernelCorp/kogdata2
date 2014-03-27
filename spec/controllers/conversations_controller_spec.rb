@@ -30,6 +30,7 @@ describe ConversationsController do
     @users = [FactoryGirl.create(:user, conversations: []),
               FactoryGirl.create(:user, conversations: []),
               @owner]
+    request.accept = 'application/json'
   end
 
   describe "GET index" do
@@ -48,46 +49,6 @@ describe ConversationsController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested conversation as @conversation" do
-      conversation = @owner.conversations.create! users: @users
-      sign_in @owner
-      get :show, {:id => conversation.to_param}
-      assigns(:conversation).should eq(conversation)
-    end
-
-    it 'member can see conversation' do
-      conversation = @owner.conversations.create! users: @users
-      sign_in @users.first
-      get :show, {:id => conversation.to_param}
-      assigns(:conversation).should eq(conversation)
-    end
-
-    it 'access denied for not members' do
-      conversation = @owner.conversations.create! users: @users
-      sign_in FactoryGirl.create(:user)
-      expect {get :show, {:id => conversation.to_param} }.to raise_error(CanCan::AccessDenied)
-    end
-
-  end
-
-  describe "GET new" do
-    it "assigns a new conversation as @conversation" do
-      sign_in FactoryGirl.create(:user)
-      get :new, {}
-      assigns(:conversation).should be_a_new(Conversation)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested conversation as @conversation" do
-      conversation = @owner.conversations.create! users: @users
-      sign_in @owner
-      get :edit, {:id => conversation.to_param}
-      assigns(:conversation).should eq(conversation)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Conversation" do
@@ -103,27 +64,7 @@ describe ConversationsController do
         assigns(:conversation).should be_a(Conversation)
         assigns(:conversation).should be_persisted
       end
-
-      it "redirects to the created conversation" do
-        sign_in @owner
-        post :create, {conversation:  valid_attributes}
-        response.should redirect_to(Conversation.last)
-      end
     end
   end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "assigns the requested conversation as @conversation" do
-        sign_in @owner
-        conversation = @owner.conversations.create! valid_attributes
-        put :update, {:id => conversation.to_param, conversation:  valid_attributes}
-        assigns(:conversation).should eq(conversation)
-      end
-
-    end
-  end
-
-
 
 end

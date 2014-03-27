@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_conversation
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  respond_to :json
   authorize_resource
 
   # GET /messages
@@ -15,54 +16,27 @@ class MessagesController < ApplicationController
   def show
   end
 
-  # GET /messages/new
-  def new
-    @message = @conversation.messages.build
-  end
-
-  # GET /messages/1/edit
-  def edit
-  end
-
   # POST /messages
   # POST /messages.json
   def create
     @message = @conversation.messages.build message_params
     authorize! :create, @message
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to conversation_message_path(@conversation, @message), notice: 'Message was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @message }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Message was successfully saved.' if @message.save(message_params)
+    respond_with @conversation, @message
   end
 
   # PATCH/PUT /messages/1
   # PATCH/PUT /messages/1.json
   def update
-    respond_to do |format|
-      if @message.update(message_params)
-        format.html { redirect_to conversation_message_path(@conversation, @message), notice: 'Message was successfully
-updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Message was successfully updated.' if @message.update(message_params)
+    respond_with @message
   end
 
   # DELETE /messages/1
   # DELETE /messages/1.json
   def destroy
     @message.destroy
-    respond_to do |format|
-      format.html { redirect_to conversation_path(@conversation) }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
