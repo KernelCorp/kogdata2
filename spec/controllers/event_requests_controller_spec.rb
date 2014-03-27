@@ -20,6 +20,10 @@ require 'spec_helper'
 
 describe EventRequestsController do
 
+  before :each do
+    request.accept = 'application/json'
+  end
+
   describe 'with event request' do
 
     before :each do
@@ -54,14 +58,6 @@ describe EventRequestsController do
           delete :destroy, {event_id: @event_request.event.id, :id => @event_request.to_param}
         }.to change(EventRequest, :count).by(-1)
       end
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new event_request as @event_request" do
-      sign_in FactoryGirl.create :photographer
-      get :new, {event_id: FactoryGirl.create(:event).id}
-      assigns(:event_request).should be_a_new(EventRequest)
     end
   end
   

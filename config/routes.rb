@@ -5,7 +5,7 @@ Kogdata2::Application.routes.draw do
   resources :portfolios, only: [:destroy]
 
   resources :events do
-    resources :event_requests, except: [:edit, :update]
+    resources :event_requests, except: [:new, :edit, :update]
   end
 
   resources :conversations do

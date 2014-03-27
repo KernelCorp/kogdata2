@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   authorize_resource
   #layout Proc.new { current_user.is_a?(Customer) ? 'customer' : 'photographer' }
-
+  respond_to :json, except: [ :edit, :new ]
   # GET /events
   # GET /events.json
   def index
@@ -32,40 +32,22 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build event_params
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @event }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Event was successfully created.' if @event.save
+    respond_with @event
   end
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Event was successfully updated.' if @event.update(event_params)
+    respond_with @event
   end
 
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
     @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private

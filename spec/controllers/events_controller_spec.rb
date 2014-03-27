@@ -35,6 +35,7 @@ describe EventsController do
   before :each do
     @customer     = FactoryGirl.create :customer
     @photographer = FactoryGirl.create :photographer
+    request.accept = 'application/json'
   end
 
   describe "GET index" do
@@ -64,23 +65,6 @@ describe EventsController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new event as @event" do
-      sign_in @customer
-      get :new, {}
-      assigns(:event).should be_a_new(Event)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested event as @event" do
-      sign_in @customer
-      event = @customer.events.create! valid_attributes
-      get :edit, {:id => event.to_param}
-      assigns(:event).should eq(event)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Event" do
@@ -95,12 +79,6 @@ describe EventsController do
         post :create, {event: valid_attributes}
         assigns(:event).should be_a(Event)
         assigns(:event).should be_persisted
-      end
-
-      it "redirects to the created event" do
-        sign_in @customer
-        post :create, {event: valid_attributes}
-        response.should redirect_to(Event.last)
       end
     end
 
@@ -117,12 +95,6 @@ describe EventsController do
         post :create, {event: attribute_with_diffuse_date}
         assigns(:event).should be_a(Event)
         assigns(:event).should be_persisted
-      end
-
-      it "redirects to the created event" do
-        sign_in @customer
-        post :create, {event: attribute_with_diffuse_date}
-        response.should redirect_to(Event.last)
       end
     end
 
