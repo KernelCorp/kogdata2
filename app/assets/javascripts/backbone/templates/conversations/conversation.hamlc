@@ -1,2 +1,3 @@
 %td
-  = @theme
+  %a{href: "#conversations/#{@id}"}
+    = @theme

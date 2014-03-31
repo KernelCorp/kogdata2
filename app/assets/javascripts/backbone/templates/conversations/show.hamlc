@@ -1,0 +1,7 @@
+.back_white_box
+  %h2 =@theme
+  .message_box
+    - for message in @messages
+      = "#{message.user}:"
+      %p
+        = message.text
