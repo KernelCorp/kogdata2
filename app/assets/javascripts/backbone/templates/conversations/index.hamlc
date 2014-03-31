@@ -1,0 +1,6 @@
+.back_white_box
+  %h2.event_title
+    Беседы
+
+  %table.table
+    %tbody

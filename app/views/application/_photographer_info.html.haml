@@ -15,7 +15,7 @@
 
       .right_user_panel
         .info-block
-          %button.btn.btn-link-red#message_button
+          %a.btn.btn-link-red#message_button{href: '#conversations/'}
             %i.icon-k-message
             = t :my_messages
         -if @is_my_page

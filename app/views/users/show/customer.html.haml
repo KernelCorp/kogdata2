@@ -3,5 +3,6 @@
   :javascript
     $(function() {
       window.eventsRouter = new Kogdata2.Routers.EventsRouter({events: []});
+      window.conversationsRouter = new Kogdata2.Routers.ConversationsRouter({conversations: []});
       Backbone.history.start({root: '#{user_path current_user}'});
     });
