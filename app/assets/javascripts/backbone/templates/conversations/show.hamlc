@@ -2,7 +2,12 @@
   %h2 =@theme
   .message_box
     - for message in @messages
-      %a{href: "#{@messages.user.url}"}
-        = "#{message.user}:"
+      %a{href: "#{message.user.url}"}
+        = "#{message.user.name}:"
       %p
         = message.text
+  %form#new-message{name: 'message'}
+    .field
+      %input#text{name: 'message[text]', type: 'text'}
+    .actions
+      %input{type: 'submit', value: 'Ответить'}

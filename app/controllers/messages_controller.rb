@@ -20,6 +20,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = @conversation.messages.build message_params
+    @message.user = current_user
     authorize! :create, @message
     flash[:notice] = 'Message was successfully saved.' if @message.save(message_params)
     respond_with @conversation, @message
