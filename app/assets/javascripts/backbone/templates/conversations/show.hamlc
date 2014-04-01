@@ -2,6 +2,7 @@
   %h2 =@theme
   .message_box
     - for message in @messages
-      = "#{message.user}:"
+      %a{href: "#{@messages.user.url}"}
+        = "#{message.user}:"
       %p
         = message.text

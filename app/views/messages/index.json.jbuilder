@@ -1,3 +1,3 @@
 json.array!(@messages) do |message|
-  json.extract! message, :id, :text
+  json.partial! 'messages/message', message: message
 end
