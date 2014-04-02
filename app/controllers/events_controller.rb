@@ -8,9 +8,9 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if params[:user_id].blank?
-      @events = Event.active
+      @events = Event.active.on_day params[:day]
     else
-      @events = User.find(params[:user_id]).events
+      @events = User.find(params[:user_id]).events.on_day params[:day]
     end
   end
 

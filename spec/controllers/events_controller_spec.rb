@@ -23,7 +23,7 @@ describe EventsController do
   # This should return the minimal set of attributes required to create a valid
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "city" => "Novosib", date: Date.today } }
+  let(:valid_attributes) { { "city" => "Novosib", date: DateTime.now } }
   let(:attribute_with_diffuse_date) { { "city" => "Novosib",
                                         year:  Date.today.year,
                                         month: Date.today.month,
@@ -52,6 +52,13 @@ describe EventsController do
       sign_in @photographer
       event = @customer.events.create! valid_attributes
       get :index, {}
+      assigns(:events).should eq([event])
+    end
+
+    it 'return all active events on a day' do
+      sign_in @photographer
+      event = @customer.events.create! valid_attributes
+      get :index, {date: Date.today}
       assigns(:events).should eq([event])
     end
   end
