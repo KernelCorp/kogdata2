@@ -19,6 +19,6 @@
 //= require backbone_datalink
 //= require backbone/kogdata2
 //= require users_type_switcher
-
+//= require_tree ./calendar
 
 

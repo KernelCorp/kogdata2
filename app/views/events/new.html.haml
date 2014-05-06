@@ -1,5 +1,17 @@
-%h1 New event
+.container.main-container
+  .row
+    .span5
+      = render 'form'
+    .span7
+      .calendar-container
+        #calendar
 
-= render 'form'
+%input{:id => 'title-for-show',:class => 'hidden'}
+%textarea{:id => 'description-for-show',:class => 'hidden'}
+%input{:id => 'date-input', :type => 'text'}
 
-= link_to 'Back', events_path
+:coffee
+  $(document).ready ->
+    window.calendarController = new CalendarController()
+
+
