@@ -1,7 +1,5 @@
 class @UserTypeSwitcher
 
-
-
   constructor: ->
     @customerButton   = $ 'button.client-option'
     @contractorButton = $ 'button.contractor-option'
