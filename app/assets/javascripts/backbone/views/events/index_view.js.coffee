@@ -8,6 +8,7 @@ class Kogdata2.Views.Events.IndexView extends Backbone.View
 
   addAll: () =>
     @options.events.each(@addOne)
+    window.calendarController.update @options.events.models if window.calendarController
 
   addOne: (event) =>
     view = new Kogdata2.Views.Events.EventView({model : event})

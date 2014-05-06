@@ -6,8 +6,6 @@
     %thead
       %tr
         %th
-          id
-        %th
           Тип события
         %th
           Дата

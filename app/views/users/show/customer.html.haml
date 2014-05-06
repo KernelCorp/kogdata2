@@ -6,3 +6,11 @@
       window.conversationsRouter = new Kogdata2.Routers.ConversationsRouter({conversations: []});
       Backbone.history.start({root: '#{user_path current_user}'});
     });
+
+-content_for :right do
+  .back_white_box
+    .calendar-container
+      #calendar
+      :coffee
+        $(document).ready ->
+          window.calendarController = new EventsCalendarController()
