@@ -1,0 +1,48 @@
+.container#forms.reg-container
+  %h2.reg-title Зарегистрироваться в Kogdata
+  .role-group{'data-toggle' =>"buttons-radio"}
+    %button.btn.active#options.client-option{type: "radio", name: "options"}
+      Я клиент
+    %button.btn#options.contractor-option{ type: "radio",  name: "options"}
+      Я фотограф
+  .container-fluid
+    .row-fluid
+      //= render "devise/shared/links"
+      %br
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
+        = f.hidden_field :type, value: 'Customer'
+        .control-wrapper
+          .control-group
+            = f.text_field :name, :class => 'large', :autofocus => true,  placeholder: 'Имя'
+          .control-group
+            %label
+              = t(:email)
+            = f.email_field :email, :class => 'large'
+          .control-group
+            %label
+              = t(:password)
+            = f.password_field :password, :class => 'large'
+          .control-group
+            %label
+              = t(:confirm_password)
+            = f.password_field :password, :class => 'large'
+          .control-group#submit
+            %input{:type => "checkbox", :id => "check_agree"}
+            %label
+              = t(:i_agree)
+            %br
+            = f.submit "Регистрация", :class => "btn btn-danger btn-large", :id => "reg-submit"
+  .left-column
+    .soc-links-container
+      %a.social-btn{:href => "/users/auth/vkontakte"}
+        %i.icon-k-vkontakte
+      %a.social-btn#twit-btn{:href => "/users/auth/twitter"}
+        %i.icon-k-facebook
+      %a.social-btn#face-btn{:href => "/users/auth/facebook"}
+        %i.icon-k-twitter
+
+:coffee
+  $(document).ready ->
+    window.switcher = new UserTypeSwitcher()
+
