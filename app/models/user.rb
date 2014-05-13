@@ -39,7 +39,12 @@ class User
   field :name,    type: String
   field :surname, type: String
 
-  has_mongoid_attached_file :avatar
+  has_mongoid_attached_file :avatar,
+                            default_url: '/images/bender.jpg',
+                            styles: {
+                                small: ["300x300#", :jpg],
+                                thumb: ["50x50#", :jpg]
+                            }
 
   has_and_belongs_to_many :conversations
   before_create :set_unique_avatar_name
@@ -48,6 +53,6 @@ class User
 
   protected
   def set_unique_avatar_name
-    self.avatar.instance_write :file_name, "#{SecureRandom.uuid}"
+    self.avatar.instance_write :file_name, "#{SecureRandom.uuid}" if self.avatar.exists?
   end
 end

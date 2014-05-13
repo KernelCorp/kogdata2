@@ -6,7 +6,6 @@ class PortfoliosController < ApplicationController
   # GET /images.json
   def index
     @images = @photographer.image_portfolios
-    render layout: 'photographer'
   end
 
   # DELETE /images/1

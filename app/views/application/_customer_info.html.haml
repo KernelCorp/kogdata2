@@ -10,16 +10,13 @@
       %h1.info_user_name
         = current_user.name
 
-      %h3.info_user_city
-        Город из таблицы
-
       .right_user_panel
         .info-block
           %a.btn.btn-link-red#message_button{href: '#conversations/'}
             %i.icon-k-message
-            = t :my_messages
+            Сообщения
         .info-block
           %a.btn.btn-link-red#my_events_button{href: '#events/'}
             %i.icon-k-event
               = '005'
-            = t :my_events
+            Мои события
