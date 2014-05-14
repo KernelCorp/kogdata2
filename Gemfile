@@ -64,6 +64,8 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'rack'
+  gem 'coveralls', require: false
 end
 
 
