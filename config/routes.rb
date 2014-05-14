@@ -16,7 +16,7 @@ Kogdata2::Application.routes.draw do
     resources :portfolios, only: [:index]
   end
 
-  devise_for :users, controllers: { registrations: :registrations}
+  devise_for :users, controllers: { registrations: :registrations }
 
   resources :users, only: :show do
     resources :events, only: [:index]

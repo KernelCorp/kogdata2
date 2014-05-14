@@ -21,6 +21,8 @@ gem 'mongoid', '4.0.0.beta1', github: 'mongoid/mongoid'
 
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 
+gem 'mongoid_slug'
+
 gem 'aws-sdk', '~> 1.3.4'
 
 # Use SCSS for stylesheets

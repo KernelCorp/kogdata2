@@ -1,10 +1,12 @@
 class User
   include Mongoid::Document
   include Mongoid::Paperclip
+  include Mongoid::Slug
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: :login_or_email
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -36,6 +38,11 @@ class User
   # field :locked_at,       type: Time
 
   ## Custom fields
+  attr_accessor :login_or_email
+  
+  field :login, type: String, default: ->{ _id }
+  slug :login
+
   field :name,    type: String
   field :surname, type: String
 
@@ -49,10 +56,26 @@ class User
   has_and_belongs_to_many :conversations
   before_create :set_unique_avatar_name
 
+  validates :login, uniqueness: { case_sensitive: false }
+
   validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
 
   protected
   def set_unique_avatar_name
     self.avatar.instance_write :file_name, "#{SecureRandom.uuid}" if self.avatar.exists?
   end
+
+  def self.find_for_database_authentication( warden_conditions )
+    conditions = warden_conditions.dup
+    if login_or_email = conditions.delete(:login_or_email)
+      where(conditions).where(
+        '$or' => [ 
+          { login: /^#{Regexp.escape(login_or_email)}$/i }, 
+          { email: /^#{Regexp.escape(login_or_email)}$/i } 
+        ]
+      ).first
+    else
+      where(conditions).first
+    end
+  end 
 end
