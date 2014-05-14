@@ -1,0 +1,22 @@
+.container#forms.reg-container
+  %h2.reg-title Зарегистрироваться в Kogdata
+  .role-group{'data-toggle' =>"buttons-radio"}
+    %button.btn.active#options.client-option{type: "radio", name: "options"}
+      Я клиент
+    %button.btn#options.contractor-option{ type: "radio",  name: "options"}
+      Я фотограф
+  .container-fluid
+    .row-fluid
+      = form_for User.new, url: auth_finish_path, html: { method: :post } do |f|
+        = f.hidden_field :type, value: 'Customer'
+        .control-wrapper
+          .control-group
+            %label= t(:email)
+            = f.email_field :email, :class => 'large'
+          .control-group#submit
+            = f.submit "Регистрация", :class => "btn btn-danger btn-large", :id => "reg-submit"
+
+:coffee
+  $(document).ready ->
+    window.switcher = new UserTypeSwitcher()
+

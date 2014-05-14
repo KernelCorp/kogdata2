@@ -46,6 +46,8 @@ class User
   field :name,    type: String
   field :surname, type: String
 
+  field :vk_id
+
   has_mongoid_attached_file :avatar,
                             default_url: '/images/bender.jpg',
                             styles: {

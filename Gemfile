@@ -23,6 +23,9 @@ gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 
 gem 'mongoid_slug'
 
+gem 'omniauth'
+gem 'omniauth-vkontakte'
+
 gem 'aws-sdk', '~> 1.3.4'
 
 # Use SCSS for stylesheets
@@ -57,6 +60,10 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :development do
+  gem 'quiet_assets'
 end
 
 group :test, :development do
