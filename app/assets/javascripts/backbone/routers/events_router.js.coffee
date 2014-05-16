@@ -2,8 +2,13 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
   initialize: (options) ->
     @events = new Kogdata2.Collections.EventsCollection()
     window.eventRequestRouter = new Kogdata2.Routers.EventRequestsRouter({eventRequests: []});
-    @events.reset options.events
-
+    @events.reset options.events[0]
+    $('.fc-button-prev').click =>
+      @fetch()
+      return
+    $('.fc-button-next').click =>
+      @fetch()
+      return
   routes:
     "events/new"      : "newEvent"
     ".*"              : "index"
@@ -17,13 +22,12 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     $("#events").html(@view.render().el)
 
   index: ->
-    @events.reset().fetch()
+    @events.fetch()
     @view = new Kogdata2.Views.Events.IndexView(events: @events)
     $("#events").html(@view.render().el)
 
   show: (id) ->
     event = @events.get(id)
-
     @view = new Kogdata2.Views.Events.ShowView(model: event)
     $("#events").html(@view.render().el)
 
