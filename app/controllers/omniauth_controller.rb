@@ -11,18 +11,26 @@ class OmniauthController < ApplicationController
       sign_user user.first
     else
       session[:oauthorize] = vk_hash.merge name: data[:info][:first_name], surname: data[:info][:last_name]
+      @user = User.new
+      render 'devise/registrations/new_social'
     end
+
+    render 'devise/registrations/new_social'
   end
 
   def finish
     redirect_to root_path unless session[:oauthorize]
 
-    user_class = params[:user][:type] == 'Customer' ? Customer : Photographer
-    user = user_class.create user_params.merge( session[:oauthorize] ).merge password: SecureRandom.hex(8)
-    
-    session[:oauthorize] = nil
+    type = params[:user][:_type]
+    user_class = %w( Customer Photographer ).include?( type ) && type.constantize
+    @user = user_class.new user_params.merge( session[:oauthorize] ).merge password: SecureRandom.hex(8)
 
-    sign_user user
+    if @user.save
+      session[:oauthorize] = nil
+      sign_user user
+    else
+      render 'devise/registrations/new_social'
+    end
   end
 
   protected
@@ -34,7 +42,7 @@ class OmniauthController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit :email
+    params.require(:user).permit :email, :terms, :_type
   end
   
 end

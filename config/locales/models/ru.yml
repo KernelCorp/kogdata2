@@ -1,0 +1,47 @@
+ru:
+  attributes:
+    id: Номер
+    slug: Ссылка
+    created_at: Создан
+    updated_at: Изменен
+    email: Email
+    phone: Телефон
+    full_name: ФИО
+    photo: Фото
+    title: Заголовок
+    header: Заголовок
+    name: Имя
+    description: Описание
+    text: Текст
+    preview: Превью
+    background: Фон
+    password: Пароль
+    password_confirmation: Повторите пароль
+    status: Статус
+
+  mongoid:
+    models:
+      user:
+        one:   Пользователь
+        few:   Пользователя
+        many:  Пользователей
+        other: Пользователи
+      customer:
+        one:   Заказчик
+        few:   Заказчика
+        many:  Заказчиков
+        other: Заказчики
+      photographer:
+        one:   Фотограф
+        few:   Фотографа
+        many:  Фотографов
+        other: Фотографы
+
+    attributes:
+      user:
+        email: E-mail
+
+  helpers:
+    submit:
+      user:
+        create: Зарегистрироваться
