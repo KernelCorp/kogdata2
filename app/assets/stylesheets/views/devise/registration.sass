@@ -1,0 +1,118 @@
+#user_registration.container
+  padding-top: 50px
+  padding-bottom: 50px
+  background: #d2e6d5
+  border-radius: 5px
+
+
+#user_registration .new_user_title
+  text-align: center
+  font-size: 16px
+  line-height: 1
+  color: #e25957
+  margin: 0px
+  padding: 0px
+  margin-bottom: 30px
+
+#user_registration .form.new_user
+  text-align: center
+  margin: 0px
+
+  label, input
+    margin: 0px
+    padding: 0px
+    border: none
+    font-size: 12px
+
+  > .input
+    max-width: 267px
+    margin: 0px auto 10px
+
+    > label
+      padding-left: 5px
+      text-align: left
+      color: #516162
+      line-height: 1.2
+
+    > input
+      -webkit-box-sizing: border-box
+      -moz-box-sizing: border-box
+      box-sizing: border-box
+      width: 100%
+      padding: 4px 6px
+      height: 27px
+      line-height: 19px
+      border-radius: 2px
+
+  .user__type
+    margin-bottom: 55px
+    max-width: 341px
+    
+    > .radio
+      display: inline-block
+      vertical-align: top
+      padding: 0px //
+
+      + .radio
+        margin-left: 47px
+
+      > input
+        display: none
+
+      > label
+        width: 147px
+        height: 30px
+        font-size: 12px
+        line-height: 30px
+        color: white
+        background: hsl(128, 20%, 78%)
+        transition: background-color 0.3s ease
+
+        &:hover
+          background: hsl(1, 45%, 70%)
+
+      > :checked + label
+        background: hsl(1, 71%, 61%) !important
+
+  > ._bottom
+    margin-top: 40px
+
+    > .button
+      width: 165px
+      height: 20px
+      font-size: 12px
+      line-height: 20px
+      color: white
+      background: hsl(1, 71%, 61%)
+      border: none
+      outline: none
+      padding: 0px
+      margin-top: 5px
+
+    > .user_terms > label
+      display: inline-block
+      padding-left: 5px
+      font-size: 12px
+      color: #516162
+
+  #error_explanation
+    margin-left: auto
+    margin-right: auto
+  .field_with_errors
+    display: block
+
+#user_registration > #_social_links
+  margin-top: 40px
+  text-align: center
+
+  > div
+    font-size: 12px
+    color: #516162
+
+  > a
+    display: inline-block
+    vertical-align: top
+    height: 38px
+    width: 38px
+    background-color: transparent !important
+    background-image: url(/images/registration/soc_links_round.png)
