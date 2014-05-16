@@ -37,6 +37,8 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  validates_acceptance_of :terms
+
   ## Custom fields
   attr_accessor :login_or_email
   
@@ -47,6 +49,9 @@ class User
   field :surname, type: String
 
   field :vk_id
+
+  field :_type
+  validates :_type, presence: true, on: :create
 
   has_mongoid_attached_file :avatar,
                             default_url: '/images/bender.jpg',

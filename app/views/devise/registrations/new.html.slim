@@ -1,0 +1,25 @@
+.container#user_registration
+  .container-fluid
+    .row-fluid
+      h2.new_user_title Регистрация
+
+      = simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :post } do |f|
+        = f.input :_type, as: :radio_buttons, collection: [ Customer, Photographer ], checked: 'Customer', label: false,
+          value_method: proc { |x| x.name },
+          label_method: proc { |x| 'Я - '+x.model_name.human.downcase }
+
+        = devise_error_messages!
+
+        = f.input :email
+        = f.input :password
+        = f.input :confirm_password
+
+        ._bottom
+          = f.input :terms
+          = f.button :button
+
+  #_social_links
+    div Войти через социальные сети
+    a href='/auth/vkontakte' style='background-position: -38px 0px'
+    a href='/auth/twitter'   style='background-position:   0px 0px'
+    a href='/auth/facebook'  style='background-position: -76px 0px'
