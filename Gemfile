@@ -58,6 +58,7 @@ end
 
 group :development do
   gem 'quiet_assets'
+  #gem 'rails-i18n-debug'
 end
 
 group :test, :development do

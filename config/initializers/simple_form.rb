@@ -5,7 +5,7 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default, class: :input,
+  config.wrappers :default, class: :vfield,
     hint_class: :field_with_hint, error_class: :field_with_errors do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
@@ -54,9 +54,6 @@ SimpleForm.setup do |config|
   #   nested: label > input
   config.boolean_style = :inline
 
-  # Default class for buttons
-  config.button_class = 'button'
-
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
   # Use :to_sentence to list all errors for each field.
@@ -80,9 +77,6 @@ SimpleForm.setup do |config|
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
   # config.collection_wrapper_tag = nil
 
-  # You can define the class to use on all collection wrappers. Defaulting to none.
-  # config.collection_wrapper_class = nil
-
   # You can wrap each item in a collection of radio/check boxes with a tag,
   # defaulting to :span. Please note that when using :boolean_style = :nested,
   # SimpleForm will force this option to be a label.
@@ -93,12 +87,6 @@ SimpleForm.setup do |config|
 
   # How the label text should be generated altogether with the required text.
   config.label_text = lambda { |label, required| label }
-
-  # You can define the class to use on all labels. Default is nil.
-  # config.label_class = 'control-label'
-
-  # You can define the class to use on all forms. Default is simple_form.
-  config.form_class = :form
 
   # You can define which elements should obtain additional classes
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
@@ -120,7 +108,7 @@ SimpleForm.setup do |config|
   # to match as key, and the input type that will be used when the field name
   # matches the regexp as value.
   config.input_mappings = { 
-    /terms/ => :boolean 
+    /\A(?:terms|remember_me)\z/ => :boolean 
   }
 
   # Custom wrappers for input types. This should be a hash containing an input
@@ -142,6 +130,16 @@ SimpleForm.setup do |config|
   # Cache SimpleForm inputs discovery
   # config.cache_discovery = !Rails.env.development?
 
-  # Default class for inputs
-  # config.input_class = nil
+  # You can define the class to use on all collection wrappers. Defaulting = nil
+  # You can define the class to use on all labels. Default = nil
+  # You can define the class to use on all forms. Default = simple_form
+  # Default class for inputs = nil
+  # Default class for buttons = nil
+  # + fields in wrappers config
+
+  config.collection_wrapper_class = :vcollection
+  config.label_class = :vlabel
+  config.form_class = :vform
+  config.input_class = :vinput
+  config.button_class = :vbutton
 end

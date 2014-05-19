@@ -1,0 +1,42 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    .container
+      a class='brand' href='/'
+        kogdata
+        sup beta
+      ul.nav.pull-right#header_right_part
+        
+        - if user_signed_in?
+        
+          li.calendar-icon = link_to '', '/'
+          li.messages-icon: a href='conversations': p 0
+          li.user-name: p = link_to current_user.name, '#'
+          li.avatar = image_tag current_user.avatar :thumb
+          li.splitter
+          li.exit = link_to t(:sign_out), destroy_user_session_path
+        
+        - else
+
+          li#header_signin_li: a = t '.sign_in_up'
+
+          #header_signin_form
+            = simple_form_for User.new, url: session_path('user'), html: { method: :post } do |f|
+              = f.input :login_or_email
+              = f.input :password
+
+              a.recover href=new_user_password_path = t '.form.recover'
+
+              = f.input :remember_me
+
+              = f.button :button
+                = t '.form.sign_in'
+              br
+              a.sign_up href=new_user_registration_path = t '.form.sign_up'
+            
+            .sign_social_links
+              div = t '.form.by_social'
+              a href='/auth/vkontakte' style='background-position: -38px 0px'
+              a href='/auth/twitter'   style='background-position:   0px 0px'
+              a href='/auth/facebook'  style='background-position: -76px 0px'
+
+.navbar_padding_elem

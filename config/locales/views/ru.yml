@@ -1,0 +1,9 @@
+ru:
+  application:
+    header:
+      sign_in_up: вход/регистрация
+      form:
+        recover: забыли пароль?
+        sign_in: Войти
+        sign_up: зарегистрироваться
+        by_social: 'Войти с помощью:'
