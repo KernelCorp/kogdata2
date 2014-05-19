@@ -1,0 +1,13 @@
+= form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+  = f.input :login_or_email
+  = f.input :password
+
+  = f.input :remember_me
+
+  = f.button :button
+
+  #_social_links
+    div Войти с помощью:
+    a href='/auth/vkontakte' style='background-position: -38px 0px'
+    a href='/auth/twitter'   style='background-position:   0px 0px'
+    a href='/auth/facebook'  style='background-position: -76px 0px'

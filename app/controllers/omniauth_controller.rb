@@ -14,8 +14,6 @@ class OmniauthController < ApplicationController
       @user = User.new
       render 'devise/registrations/new_social'
     end
-
-    render 'devise/registrations/new_social'
   end
 
   def finish
@@ -27,7 +25,7 @@ class OmniauthController < ApplicationController
 
     if @user.save
       session[:oauthorize] = nil
-      sign_user user
+      sign_user @user
     else
       render 'devise/registrations/new_social'
     end

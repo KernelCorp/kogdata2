@@ -1,0 +1,52 @@
+#header_right_part
+  position: relative
+
+#header_signin_li
+  width: 327px
+  text-align: right
+
+#header_signin_form
+  display: none
+  position: absolute
+  width: 327px
+  top: 41px
+  right: 0px
+  background: hsl(128, 29%, 86%)
+
+  > .vform
+    padding-top: 10px
+    padding-bottom: 10px
+
+  .recover, .sign_up
+    background: transparent
+    color: hsl(184, 9%, 35%)
+
+  .recover
+    font-size: 10px
+
+  .user_remember_me
+    text-align: left
+
+  .vbutton
+    width: 111px
+
+  > .sign_social_links
+    height: 47px
+    line-height: 47px
+    background: hsl(128, 20%, 78%)
+
+    > div
+      font-size: 12px
+      display: inline-block
+      padding-left: 28px
+      padding-right: 12px
+
+
+#header_right_part:hover
+
+  > #header_signin_form
+    display: block
+
+  > #header_signin_li > a
+    cursor: default
+    color: white

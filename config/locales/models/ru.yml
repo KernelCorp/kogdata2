@@ -39,7 +39,9 @@ ru:
 
     attributes:
       user:
+        login_or_email: Логин или E-mail
         email: E-mail
+        remember_me: Запомнить меня
 
   helpers:
     submit:
