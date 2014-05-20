@@ -5,6 +5,7 @@ class @EventsCalendarController extends CalendarController
       date = new Date event.attributes.date
       day_selector = ".fc-day-number:contains('#{date.getDate()}')"
       $(day_selector).parent().addClass('event-day')
+      $(day_selector).parent().append("<a class='event_link' href='#events/#{event.id}'></a>")
     return
 
   select_up_to_date_events: (events_collection) ->
