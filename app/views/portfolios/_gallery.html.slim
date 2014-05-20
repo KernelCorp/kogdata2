@@ -1,0 +1,41 @@
+= form_for Image::Portfolio.new, url: portfolios_path(format: :json), remote: true, html: { id: 'portfolio_gallery', multipart: true }
+  .empty = t '.empty'
+  .carousel class=( current_user == owner ? 'personal' : '' )
+    .carousel_platform
+      - owner.image_portfolios.each do |image|
+        .carousel_horse data-preview=image.attachment.url(:original)
+          .destroy data-url=portfolio_path(image, format: :json) : i.icon-trash
+          img src=image.attachment.url(:original)
+    .carousel_arrow.left
+    .carousel_arrow.right
+      .gear
+
+coffee:
+  gallery = $ '#portfolio_gallery'
+  carousel = gallery.find '.carousel_platform'
+
+  working_carousel = new WorkingCarousel( carousel )
+
+  drop = new Dropzone gallery[0], clickable: false, previewsContainer: false
+
+  drop.on 'success', (e, responce)->
+    $("
+      <div class='carousel_horse' data-preview='#{responce.preview}'>
+        <div class='destroy' data-url='#{responce.destroy}'></div>
+        <img src=#{responce.original}>
+      </div>
+    ")
+    .appendTo carousel
+    return
+
+  carousel.clicked '.destroy', (e)->
+    q = $ @
+    q.ajax 'delete', 'd:url', {}, ->
+      q.parent().remove()
+
+  gallery.clicked '.carousel_arrow', (e)->
+    working_carousel.scroll( (if $(e.target).hasClass('right') then 1 else -1), 0.5, 'swing' )
+    return false
+
+  #carousel.clicked (e)->
+  #  working_carousel.startAutoScroll()

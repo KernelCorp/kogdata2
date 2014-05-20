@@ -2,7 +2,6 @@ Kogdata2::Application.routes.draw do
 
   root 'main#index'
 
-  resources :portfolios, only: [:destroy]
 
   resources :events do
     resources :event_requests, except: [:new, :edit, :update]
@@ -13,8 +12,9 @@ Kogdata2::Application.routes.draw do
   end
 
   resources :photographer, only: [] do
-    resources :portfolios, only: [:index]
+    resources :portfolios, only: [:index, :destroy], shallow: true
   end
+  resources :portfolios, only: [:create]
 
   devise_for :users, controllers: { registrations: :registrations }
 
