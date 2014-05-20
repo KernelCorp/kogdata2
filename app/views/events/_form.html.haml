@@ -9,7 +9,7 @@
     %input{id: 'event_day', name: 'event[day]', type: 'number', min: 1, max: 31, autocomplete: :off}
     %select{id: 'event_month', name: 'event[month]'}
       = for i in 1..12
-        %option{value: i}
+        %option{value: i-1}
           = t('date.month_names')[i]
     %select{id: 'event_year', name: 'event[year]'}
       - year = Date.current.year
