@@ -4,10 +4,10 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     window.eventRequestRouter = new Kogdata2.Routers.EventRequestsRouter({eventRequests: []});
     @events.reset options.events[0]
     $('.fc-button-prev').click =>
-      @fetch()
+      @index()
       return
     $('.fc-button-next').click =>
-      @fetch()
+      @index()
       return
   routes:
     "events/new"      : "newEvent"
