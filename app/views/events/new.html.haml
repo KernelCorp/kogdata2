@@ -1,10 +1,14 @@
 .container.main-container
   .row
     .span5
-      = render 'form'
+      #left-block.new_form_container
+        .back_white_box
+          = render 'form'
     .span7
-      .calendar-container
-        #calendar
+      #right_block
+        .back_white_box
+          .calendar-container
+            #calendar
 
 %input{:id => 'title-for-show',:class => 'hidden'}
 %textarea{:id => 'description-for-show',:class => 'hidden'}

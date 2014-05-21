@@ -11,6 +11,8 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'slim-rails'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'compass-rails'
+
 
 # assets
 gem 'jquery-rails'
