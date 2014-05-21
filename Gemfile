@@ -66,6 +66,10 @@ end
 group :development do
   gem 'quiet_assets'
   #gem 'rails-i18n-debug'
+  gem 'net-ssh', '~> 2.7.0'
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+  gem 'nginx-config'
 end
 
 group :test, :development do
@@ -77,6 +81,7 @@ group :test, :development do
   gem 'coveralls', require: false
 end
 
+gem 'puma'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
