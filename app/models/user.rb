@@ -50,9 +50,6 @@ class User
 
   field :vk_id
 
-  field :_type
-  validates :_type, presence: true, on: :create
-
   has_mongoid_attached_file :avatar,
                             default_url: '/images/bender.jpg',
                             styles: {

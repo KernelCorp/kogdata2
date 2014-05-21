@@ -7,10 +7,9 @@ class PortfoliosController < ApplicationController
   def create
     image = Image::Portfolio.new attachment: image_params[:file], photographer: current_user
     if image.save
+      image.reload
       image = {
-        original: image.attachment.url(:original),
-        perview: image.attachment.url(:original),
-        destroy: portfolio_path(image, format: :json)
+        view: render_to_string( partial: 'portfolios/gallery_image.html', locals: { image: image.reload } )
       }
     end
     respond_with image, location: user_path(current_user)

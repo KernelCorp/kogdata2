@@ -3,9 +3,7 @@
   .carousel class=( current_user == owner ? 'personal' : '' )
     .carousel_platform
       - owner.image_portfolios.each do |image|
-        .carousel_horse data-preview=image.attachment.url(:original)
-          .destroy data-url=portfolio_path(image, format: :json) : i.icon-trash
-          img src=image.attachment.url(:original)
+        = render 'portfolios/gallery_image', image: image
     .carousel_arrow.left
     .carousel_arrow.right
       .gear
@@ -14,18 +12,14 @@ coffee:
   gallery = $ '#portfolio_gallery'
   carousel = gallery.find '.carousel_platform'
 
+  yoxview_call carousel
+
   working_carousel = new WorkingCarousel( carousel )
 
   drop = new Dropzone gallery[0], clickable: false, previewsContainer: false
 
   drop.on 'success', (e, responce)->
-    $("
-      <div class='carousel_horse' data-preview='#{responce.preview}'>
-        <div class='destroy' data-url='#{responce.destroy}'></div>
-        <img src=#{responce.original}>
-      </div>
-    ")
-    .appendTo carousel
+    $(responce.view).appendTo carousel
     return
 
   carousel.clicked '.destroy', (e)->
