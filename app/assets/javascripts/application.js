@@ -19,6 +19,5 @@
 //= require backbone_datalink
 //= require backbone/kogdata2
 //= require_tree ./calendar
-//= require dropzone
-//= require carousel
+//= require_tree ./gallery
 //= require basic
