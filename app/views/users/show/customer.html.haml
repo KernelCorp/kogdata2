@@ -3,11 +3,12 @@
 -content_for :left do
   #events
   :javascript
-    $(function() {
+    $(document).ready(function() {
       window.calendarController = new EventsCalendarController()
       window.eventsRouter = new Kogdata2.Routers.EventsRouter({events: [#{render partial: 'events/list', formats: [:json], locals: {events: current_user.events}}]});
       window.conversationsRouter = new Kogdata2.Routers.ConversationsRouter({conversations: []});
       Backbone.history.start({root: '#{user_path current_user}'});
+
     });
 
 -content_for :right do

@@ -1,13 +1,34 @@
-%tr
-  %td
-    Аватр
-  %td
-    Ретинг
-  %td
-    = if @photographer then @photographer.name else 'nil'
-  %td
-    %button.btn.btn-link.portfolio_button
-      %i.icon-k-small-portfolio
-
-    %button.btn.btn-link
-      %i.icon-k-small-message
+- if @photographer
+  - if !@photographer.avatar
+    - avatar =  '/images/bender.jpg'
+  -else
+    - avatar = @photographer.avatar
+  %tr
+    %td.contractor_avatar
+      %img{src: avatar, style: 'height: 25px'  }
+    %td.contractor_name
+      %a{href: @photograph_path}
+        = "#{@photographer.name} #{@photographer.surname}"
+    %td.write_contractor
+      - if @dialog_url
+        - dialog = @dialog_url
+      - else
+        - dialog = '#'
+      %a.btn.btn-link.write{href: dialog}
+        %i.icon-k-small-message
+  - phid = @photograph_id
+  :javascript
+    if ($('.write_contractor .write').attr('href') === '#') {
+      $('.write_contractor .write').click(function() {
+        $.ajax({
+          url: "/conversations/create_with_user",
+          data: {user_id: #{phid}},
+          type: 'post',
+          format: 'json',
+          success: function() {
+            console.log('done!!!');
+          }
+        });
+        return false;
+      });
+    }
