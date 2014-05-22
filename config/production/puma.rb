@@ -1,11 +1,6 @@
 #!/usr/bin/env puma
 
-deploy_to  = '/var/www/kogdata2'
-rails_root = "#{deploy_to}/current"
-socket_file= "#{deploy_to}/shared/puma.sock"
-log_file   = "#{rails_root}/log/puma.log"
-err_log    = "#{rails_root}/log/puma_error.log"
-old_pid    = pid_file + '.oldbin'
+deploy_to  = '/var/www/kogdata'
 
 # The directory to operate out of.
 #
@@ -79,7 +74,7 @@ state_path  "#{deploy_to}/shared/pids/puma.state"
 # The default is “tcp://0.0.0.0:9292”.
 #
 # bind 'tcp://0.0.0.0:9292'
-bind "unix:///#{deploy_to}/shared/puma.sock"
+# bind "unix:///#{deploy_to}/shared/puma.sock"
 # bind 'unix:///var/run/puma.sock?umask=0777'
 # bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'
 
