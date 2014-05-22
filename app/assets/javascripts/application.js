@@ -17,6 +17,7 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
+//= require backbone-forms
 //= require backbone/kogdata2
 //= require_tree ./calendar
 //= require_tree ./gallery

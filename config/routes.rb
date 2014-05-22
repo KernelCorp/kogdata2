@@ -7,7 +7,7 @@ Kogdata2::Application.routes.draw do
     resources :event_requests, except: [:new, :edit, :update]
   end
 
-  resources :conversations, only: [:create, :index] do
+  resources :conversations, only: [:create, :index, :show] do
     resources :messages, except: [:new, :edit]
   end
 

@@ -4,10 +4,10 @@ class Kogdata2.Views.EventRequests.IndexView extends Backbone.View
   template: JST["backbone/templates/event_requests/index"]
 
   initialize: () ->
-    @options.eventRequests.bind('reset', @addAll)
+    @collection.bind('reset', @addAll)
 
   addAll: () =>
-    @options.eventRequests.each(@addOne)
+    @collection.each(@addOne)
 
   addOne: (eventRequest) =>
     view = new Kogdata2.Views.EventRequests.EventRequestView({model : eventRequest})
@@ -15,7 +15,7 @@ class Kogdata2.Views.EventRequests.IndexView extends Backbone.View
 
   render: =>
     $(".gallery").remove() if  $(".gallery")
-    $(@el).html(@template(eventRequests: @options.eventRequests.toJSON() ))
+    $(@el).html(@template(eventRequests: @collection.toJSON() ))
     @addAll()
 
     return this

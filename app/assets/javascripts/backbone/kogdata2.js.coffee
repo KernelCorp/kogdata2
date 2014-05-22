@@ -11,11 +11,16 @@ window.Kogdata2 =
   Routers: {}
   Views: {}
 
-window.Kogdata2.csrfToken = $("meta[name='csrf-token']").attr('content');
+$ ->
 
-Backbone.sync = ((original)->
-    return (method, model, options)->
+  csrfToken = $("meta[name='csrf-token']").attr 'content'
+
+  Backbone.sync = ( ( original )->
+    (method, model, options)->
+
       options.beforeSend = (xhr)->
-        xhr.setRequestHeader('X-CSRF-Token', window.Kogdata2.csrfToken)
+        xhr.setRequestHeader 'X-CSRF-Token', csrfToken
+      
       original(method, model, options)
-    )(Backbone.sync);
+
+  )( Backbone.sync )

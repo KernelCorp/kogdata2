@@ -13,7 +13,6 @@ gem 'slim-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails'
 
-
 # assets
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -21,7 +20,8 @@ gem 'bootstrap-sass', '~> 2.3.2'
 gem 'haml_coffee_assets'
 gem 'turbolinks'
 gem 'fullcalendar-rails'
-gem 'rails-backbone', '~> 0.7.2'
+gem 'rails-backbone', github: 'codebrew/backbone-rails'
+gem 'rails-backbone-forms'
 
 # helpers
 gem 'simple_form'
@@ -44,7 +44,6 @@ gem 'cancancan', '~> 1.8'
 gem 'devise'
 
 gem 'therubyracer', platforms: :ruby
-
 
 group :assets do
   gem 'haml_coffee_assets'

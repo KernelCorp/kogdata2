@@ -1,4 +1,5 @@
-json.extract! message, :id, :text
+json.id message.id.to_s
+json.extract! message, :text
 json.user do
   unless message.user.nil?
     json.name message.user.name

@@ -10,6 +10,9 @@ class ConversationsController < ApplicationController
     @conversations = current_user.conversations
   end
 
+  def show
+  end
+
   # POST /conversations
   # POST /conversations.json
   def create
