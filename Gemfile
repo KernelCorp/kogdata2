@@ -41,8 +41,6 @@ gem 'cancancan', '~> 1.8'
 # mixed
 gem 'devise'
 
-gem 'aws-sdk', '~> 1.3.4'
-
 gem 'therubyracer', platforms: :ruby
 
 
