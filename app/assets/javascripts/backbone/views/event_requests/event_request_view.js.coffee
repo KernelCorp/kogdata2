@@ -16,4 +16,6 @@ class Kogdata2.Views.EventRequests.EventRequestView extends Backbone.View
 
   render: ->
     $(@el).html(@template(@model.toJSON() ))
+
+
     return this

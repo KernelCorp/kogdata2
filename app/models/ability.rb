@@ -32,7 +32,7 @@ class Ability
     can [:edit, :update, :show], Conversation do |conv|
       user.conversations.include? conv
     end
-    can [:new, :create, :index], Conversation
+    can [:new, :create, :index, :create_with_user], Conversation
     can :manage, Message do |message|
       (user.conversations.include? message.conversation) || message.conversation.nil?
     end

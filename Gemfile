@@ -83,7 +83,7 @@ group :test, :development do
   gem 'coveralls', require: false
 end
 
-gem 'puma'
+gem 'puma', platform: :ruby
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

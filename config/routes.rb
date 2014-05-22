@@ -8,6 +8,9 @@ Kogdata2::Application.routes.draw do
   end
 
   resources :conversations, only: [:create, :index] do
+    collection do
+      post :create_with_user
+    end
     resources :messages, except: [:new, :edit]
   end
 

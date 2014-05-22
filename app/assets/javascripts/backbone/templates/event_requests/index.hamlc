@@ -1,3 +1,3 @@
 .back_white_box
-  %table.table.table-condensed.event_table.table-striped
+  %table.table.table-condensed.event_table.table-striped.event_requests
     %tbody

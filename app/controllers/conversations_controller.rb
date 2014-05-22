@@ -18,6 +18,13 @@ class ConversationsController < ApplicationController
     respond_with @conversation
   end
 
+  def create_with_user
+    @conversation = current_user.conversations.build
+    @conversation.users.push User.find params[:user_id]
+    @conversation.save
+    respond_with conversation_path(@conversation)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
