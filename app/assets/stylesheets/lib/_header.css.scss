@@ -11,15 +11,6 @@
 	}
 	.navbar-inner {
 		background: #00525a;
-		background-image: linear-gradient(to bottom, #006F7A 0%, #00525a 53%, #00444b 54%, #003b41 100%);
-		background-repeat: repeat-x;
-		filter: none;
-		.brand {
-			color: #ffffff;
-			font-family: "Comfortaa-bold";
-			font-size: 28px;
-			margin-left: 30px;
-		}
 	}
 	@media (max-width: 767px)
 	{
@@ -79,11 +70,9 @@
 		}
 		li.splitter
 		{
-			border-color: #043338;
-			border-left-style: solid;
 			border-right-style: solid;
-			border-width: 1px;
-			border-right-color: #056C79;
+			border-right-width: 2px;
+			border-right-color: white;
 			margin: 5px 10px;
 			height: 30px;
 

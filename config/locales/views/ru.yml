@@ -4,6 +4,7 @@ ru:
       recover: забыли пароль?
       sign_in: Войти
       sign_up: зарегистрироваться
+      sign_out: Выйти
       by_social: 'Войти с помощью:'
 
   application:
