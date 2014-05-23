@@ -1,15 +1,18 @@
 ru:
+  devise:
+    actions:
+      recover: забыли пароль?
+      sign_in: Войти
+      sign_up: зарегистрироваться
+      by_social: 'Войти с помощью:'
+
   application:
     header:
       sign_in_up: вход/регистрация
-      form:
-        recover: забыли пароль?
-        sign_in: Войти
-        sign_up: зарегистрироваться
-        by_social: 'Войти с помощью:'
 
   portfolios:
     gallery:
       empty: Ваше партфолио пустует
   date:
     month_names: ['', 'Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
+

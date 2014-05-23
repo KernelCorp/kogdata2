@@ -1,7 +1,7 @@
-.container#user_registration
+.container#devise_user
   .container-fluid
     .row-fluid
-      h2.new_user_title Регистрация
+      h2.devise_title Регистрация
 
       = simple_form_for @user, as: 'user', url: auth_finish_path, html: { method: :post } do |f|
         = f.input :_type, as: :radio_buttons, collection: [ Customer, Photographer ], checked: 'Customer', label: false,

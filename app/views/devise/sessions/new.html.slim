@@ -1,0 +1,26 @@
+.container#devise_user
+  .container-fluid
+    .row-fluid
+      h2.devise_title Вход
+
+      = simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+        
+        = f.input :login_or_email
+        = f.input :password
+
+        = content_tag :div, flash[:alert], id: 'flash_alert', style: 'color: hsl(0,50%,50%)' if flash[:alert]
+
+        .bottom
+          = f.input :remember_me
+          = f.button :button
+            = t 'devise.actions.sign_in'
+
+        a.sign_up href=registration_path(resource_name) = t 'devise.actions.sign_up'
+
+        a.recover href=password_path(resource_name) = t 'devise.actions.recover'
+
+  .sign_social_links
+    div = t 'devise.actions.by_social'
+    a href='/auth/vkontakte' style='background-position: -38px 0px'
+    a href='/auth/twitter'   style='background-position:   0px 0px'
+    a href='/auth/facebook'  style='background-position: -76px 0px'

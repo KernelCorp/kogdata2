@@ -24,17 +24,17 @@
               = f.input :login_or_email
               = f.input :password
 
-              a.recover href=new_user_password_path = t '.form.recover'
+              a.recover href=new_user_password_path = t 'devise.actions.recover'
 
               = f.input :remember_me
 
               = f.button :button
-                = t '.form.sign_in'
+                = t 'devise.actions.sign_in'
               br
-              a.sign_up href=new_user_registration_path = t '.form.sign_up'
+              a.sign_up href=new_user_registration_path = t 'devise.actions.sign_up'
             
             .sign_social_links
-              div = t '.form.by_social'
+              div = t 'devise.actions.by_social'
               a href='/auth/vkontakte' style='background-position: -38px 0px'
               a href='/auth/twitter'   style='background-position:   0px 0px'
               a href='/auth/facebook'  style='background-position: -76px 0px'
