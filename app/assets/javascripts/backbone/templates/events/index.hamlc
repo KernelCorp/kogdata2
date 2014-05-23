@@ -15,4 +15,4 @@
 
     %tbody
 
-
+  %a{ id: 'event_new_link', href: '/events/new' } Создать событие

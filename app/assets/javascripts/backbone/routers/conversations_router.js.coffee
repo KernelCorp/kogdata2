@@ -16,10 +16,9 @@ class Kogdata2.Routers.ConversationsRouter extends Backbone.Router
   index: ->
     @conversations.fetch reset: true, success: (collection)=>
       @view = new Kogdata2.Views.Conversations.IndexView collection: @conversations
-      $("#right_block").html(@view.render().el)
+      $("#right_block").html @view.render().el
 
   show: (id) ->
-    new Kogdata2.Models.Conversation( id: id ).fetch success: (conversation, responce)=>
+    new Kogdata2.Models.Conversation( id: id ).fetch success: (conversation)=>
       @view = new Kogdata2.Views.Conversations.ShowView model: conversation
-
       $('#right_block').html @view.render().el

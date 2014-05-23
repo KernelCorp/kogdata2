@@ -23,7 +23,7 @@ class Kogdata2.Views.Events.IndexView extends Backbone.View
 #    @options.events.each(@addOne)
     if $('.calendar-container').length == 0
       @render_calendar_widget()
-    filtered_collection = window.calendarController.select_up_to_date_events(@options.events.models)
+    filtered_collection = window.calendarController.select_up_to_date_events(@collection.models)
     for event in filtered_collection
       @addOne event
     window.calendarController.update filtered_collection
@@ -34,7 +34,7 @@ class Kogdata2.Views.Events.IndexView extends Backbone.View
     @$("tbody").append(view.render().el)
 
   render: =>
-    $(@el).html(@template(events: @options.events.toJSON() ))
+    $(@el).html(@template(events: @collection.toJSON() ))
     @addAll()
 
     return this

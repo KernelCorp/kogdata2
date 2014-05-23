@@ -18,21 +18,22 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
 
 
   newEvent: ->
-    @view = new Kogdata2.Views.Events.NewView(collection: @events)
+    @view = new Kogdata2.Views.Events.NewView collection: @events
     $("#events").html(@view.render().el)
 
   index: ->
-    @events.fetch()
-    @view = new Kogdata2.Views.Events.IndexView(events: @events)
-    $("#events").html(@view.render().el)
+    @events.fetch success: =>
+      @view = new Kogdata2.Views.Events.IndexView collection: @events
+      $('#events').html @view.render().el
 
   show: (id) ->
-    event = @events.get(id)
-    @view = new Kogdata2.Views.Events.ShowView(model: event)
-    $("#events").html(@view.render().el)
+    new Kogdata2.Models.Event( id: id ).fetch success: (event) =>
+      @view = new Kogdata2.Views.Events.ShowView model: event
+      $('#events').html @view.render().el
 
   edit: (id) ->
-    event = @events.get(id)
+    new Kogdata2.Models.Event( id: id ).fetch success: (event) =>
+      @view = new Kogdata2.Views.Events.EditView model: event
+      $('#events').html @view.render().el
 
-    @view = new Kogdata2.Views.Events.EditView(model: event)
-    $("#events").html(@view.render().el)
+    
