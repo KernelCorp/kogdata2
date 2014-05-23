@@ -19,7 +19,7 @@
       line-height: 1.2
 
     > .vinput
-      &.email, &.password
+      &.email, &.password, &.string
         -webkit-box-sizing: border-box
         -moz-box-sizing: border-box
         box-sizing: border-box
@@ -30,14 +30,7 @@
         border-radius: 2px
 
   .vbutton
-    height: 20px
-    font-size: 12px
-    line-height: 20px
-    color: white
-    background: hsl(1, 71%, 61%)
-    border: none
-    outline: none
-    padding: 0px
+    @extend %red_vbutton
 
   .vlabel.boolean
     display: inline-block

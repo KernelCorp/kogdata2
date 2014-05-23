@@ -7,6 +7,17 @@ ru:
       sign_out: Выйти
       by_social: 'Войти с помощью:'
 
+    registrations:
+      edit:
+        general: Общая информация
+        proffessional: Профессиональные данные
+        contacts: Контактные данные
+        avatar: Фотография
+        password: Смена пароля
+        new_password: Новый пароль
+        repeat_password: Еще раз
+        upload_avatar: Загрузить фотографию
+
   application:
     header:
       sign_in_up: вход/регистрация
@@ -16,4 +27,3 @@ ru:
       empty: Ваше партфолио пустует
   date:
     month_names: ['', 'Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
-

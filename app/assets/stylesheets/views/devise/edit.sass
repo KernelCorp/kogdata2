@@ -1,0 +1,85 @@
+#devise_user._edit
+  max-width: 447px
+  padding-top: 25px
+  margin-top: 18px
+  position: relative
+  border-top-left-radius: 0px
+
+  .vform
+    display: none
+
+    &.active
+      display: block
+
+  > .switchers
+    position: absolute
+    top: -18px
+    left: 0px
+
+    > a
+      display: inline-block
+      vertical-align: top
+      width: 104px
+      color: white
+      font-size: 14px
+      line-height: 18px
+      text-align: center
+      background-color: #bbd2be
+
+      &.active
+        background-color: hsl(129, 29%, 86%)
+        cursor: default
+
+
+  .vlabel, .vinput
+    display: inline-block
+    vertical-align: top
+
+  .vfield
+    max-width: none
+
+  .vlabel
+    width: 110px
+    line-height: 27px
+
+  .vinput
+    width: 268px
+
+  .vbutton
+    padding: 0px 20px
+    margin-bottom: -50px
+
+  .vfields_title
+    text-align: left
+    color: #516162
+    font-size: 14px
+    font-weight: bold
+    margin-bottom: 10px
+
+  .user_avatar
+    > img
+      margin-left: 5px
+      display: inline-block
+      vertical-align: top
+      width: 160px
+      height: 160px
+      border-radius: 5px
+      border: 1px solid #516162
+
+      &:not([src])
+        background-image: url('/images/empty_avatar.png')
+
+    > .vinput
+      width: 240px
+      line-height: 160px
+
+      > .vbutton
+        @extend %green_red_vbutton
+        display: inline-block
+        font-size: 13.54px
+        font-weight: bold
+        line-height: 30px
+        padding: 0px 7px
+
+      > input
+        display: none

@@ -1,0 +1,80 @@
+.container#devise_user._edit
+  .switchers
+    a href='#profile' Профиль 
+    a href='#subscription' Уведомления 
+
+  .container-fluid
+    .row-fluid
+      = simple_form_for resource, as: 'user', url: user_registration_path, html: { 'data-hash'=>'#profile' } do |f|
+
+        .vfields_title = t '.general'
+        = f.input :name
+        = f.input :surname
+        = f.input :location
+
+        - if resource.class == Photographer
+          .vfields_title = t '.proffessional'
+          = f.input :skills
+          = f.input :price
+
+        .vfields_title = t '.contacts'
+        = f.input :email
+        = f.input :site
+        = f.input :vk
+        = f.input :fb
+        = f.input :tw
+        = f.input :gp
+
+        .vfields_title = t '.avatar'
+
+        .vfield.user_avatar
+          img src=( resource.avatar.path ? resource.avatar.url : nil )
+          .vinput
+            .vbutton = t '.upload_avatar'
+            = f.input_field :avatar
+
+        .vfields_title = t '.password'
+        = f.input :current_password
+        = f.input :password, label: t('.new_password')
+        = f.input :password_confirmation, label: t('.repeat_password')
+
+        = f.button :button
+
+coffee:
+  edit_box = $ '#devise_user._edit'
+
+  # hash switchers
+  forms = edit_box.find 'form'
+  switcher_container = edit_box.children '.switchers'
+
+  switcher_container.clicked 'a', ->
+    q = $ this
+
+    q.addClass('active').siblings().removeClass('active')
+
+    forms
+    .removeClass 'active'
+    .filter -> 
+      $(this).attr('data-hash') == q.attr('href')
+    .addClass 'active'
+
+  if hash = window.location.hash
+    switcher_container.find('[href="'+hash+'"]').trigger 'mousedown'
+  else
+    switcher_container.children().eq(0).trigger 'mousedown'
+
+  # file input
+  field = $ '.vfield.user_avatar'
+  preview = field.children 'img'
+  input = field.find 'input'
+  button = field.find '.vbutton'
+
+  button.clicked -> input.click()
+
+  return unless FileReader
+  input.on 'change', ->
+    oFReader = new FileReader
+    oFReader.readAsDataURL input.get(0).files[0]
+
+    oFReader.onload = ( e )->
+      preview.attr src: e.target.result

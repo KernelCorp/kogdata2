@@ -17,7 +17,9 @@ ru:
     background: Фон
     password: Пароль
     password_confirmation: Повторите пароль
+    current_password: Текущий пароль
     status: Статус
+    avatar: Аватар
 
   mongoid:
     models:
@@ -42,8 +44,18 @@ ru:
         login_or_email: Логин или E-mail
         email: E-mail
         remember_me: Запомнить меня
+        name: Имя
+        surname: Фамилия
+        location: Местоположени
+        site: Сайт
+        vk: Вконтакте
+        fb: Facebook
+        tw: Twitter
+        gp: Google+
+
 
   helpers:
     submit:
       user:
         create: Зарегистрироваться
+        update: Сохранить изменения

@@ -50,6 +50,13 @@ class User
 
   field :vk_id
 
+  field :location
+  field :site
+  field :vk
+  field :fb
+  field :tw
+  field :gp
+
   has_mongoid_attached_file :avatar,
                             default_url: '/images/bender.jpg',
                             styles: {
