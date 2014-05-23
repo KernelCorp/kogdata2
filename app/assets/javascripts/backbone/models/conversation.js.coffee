@@ -8,7 +8,7 @@ class Kogdata2.Models.Conversation extends Backbone.Model
     #messages: []
 
   parse: (response)->
-    response.messages = new Kogdata2.Collections.MessagesCollection( response.messages, conversation_id: response.id.$oid )
+    response.messages = new Kogdata2.Collections.MessagesCollection( response.messages, conversation_id: response.id )
     response
 
   toJSON: ->

@@ -23,7 +23,11 @@ class MessagesController < ApplicationController
     @message.user = current_user
     authorize! :create, @message
     flash[:notice] = 'Message was successfully saved.' if @message.save(message_params)
-    respond_with @conversation, @message
+    
+    respond_to do |format|
+      format.json { render :show }
+      format.html { respond_with @conversation, @message }
+    end
   end
 
   # PATCH/PUT /messages/1

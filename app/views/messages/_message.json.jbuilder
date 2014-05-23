@@ -1,9 +1,8 @@
-json.id message.id.to_s
-json.extract! message, :text
-json.user do
-  unless message.user.nil?
-    json.name message.user.name
-    json.id   message.user.id.to_s
-    json.url  user_url message.user
+json.extract! message, :id, :text
+
+unless message.user.nil?
+  json.user do
+    json.extract! message.user, :id, :name
+    json.url user_url message.user
   end
 end
