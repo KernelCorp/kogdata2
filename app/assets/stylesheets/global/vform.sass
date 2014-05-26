@@ -1,16 +1,17 @@
 .vform
   margin: 0px
   text-align: center
-  
-  .vlabel, .vinput
-    margin: 0px
-    padding: 0px
-    border: none
-    font-size: 12px
 
   .vfield
     max-width: 267px
     margin: 0px auto 10px
+  
+    .vlabel, .vinput
+      margin: 0px
+      padding: 0px
+      border: none
+      font-size: 12px
+      float: none //bootstrap
 
     > .vlabel
       padding-left: 5px
@@ -34,3 +35,11 @@
 
   .vlabel.boolean
     display: inline-block
+
+
+  //fight with bootstrap!
+
+  .checkbox
+    min-height: initial
+    padding-left: 0px
+
