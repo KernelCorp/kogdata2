@@ -5,6 +5,14 @@
 
   .container-fluid
     .row-fluid
+      = simple_form_for resource, as: 'user', url: user_registration_path, html: { 'data-hash'=>'#subscription' } do |f|
+        = f.simple_fields_for :subscribe do |s|
+          = s.input :responses, as: :boolean
+          = s.input :messages, as: :boolean
+          = s.input :events_in_town, as: :boolean
+
+        = f.button :button
+
       = simple_form_for resource, as: 'user', url: user_registration_path, html: { 'data-hash'=>'#profile' } do |f|
 
         .vfields_title = t '.general'
@@ -14,7 +22,8 @@
 
         - if resource.class == Photographer
           .vfields_title = t '.proffessional'
-          = f.input :skills
+          = f.input :skills, collection: Photographer::SKILLS, as: :check_boxes,
+            label_method: proc{ |skill| t "constants.photographer.skills.#{skill}" }
           = f.input :price
 
         .vfields_title = t '.contacts'

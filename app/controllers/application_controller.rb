@@ -15,7 +15,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) do |u| 
       u.permit(
         :login, :email, :password, :password_confirmation, :current_password, 
-        :name, :surname, :location, :site, :vk, :fb, :tw, :gp, :avatar
+        :name, :surname, :location, :site, :vk, :fb, :tw, :gp, :avatar,
+        { subscribe_attributes: [:responses, :messages, :events_in_town] },
+        :price, { skills: [] }
       ) 
     end
   end

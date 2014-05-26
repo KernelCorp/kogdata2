@@ -1,4 +1,6 @@
 class Photographer < User
+  SKILLS = %w( wedding love children family studio corporate report advertising )
+
   field :skills, type: Array
   field :price
 

@@ -2,7 +2,6 @@ Kogdata2::Application.routes.draw do
 
   root 'main#index'
 
-
   resources :events do
     resources :event_requests, except: [:new, :edit, :update]
   end

@@ -52,7 +52,21 @@ ru:
         fb: Facebook
         tw: Twitter
         gp: Google+
+      photographer:
+        price: Цена за час
+        skills: Специализация
 
+  constants:
+    photographer:
+      skills:
+        wedding: Свадебная фотосъемка
+        love: Love story
+        children: Детский праздники
+        family: Семейное фото
+        studio: Студийная съемка
+        corporate: Корпоративные мероприятия
+        report: Репортажная съемка
+        advertising: Рекламная фотосъемка
 
   helpers:
     submit:

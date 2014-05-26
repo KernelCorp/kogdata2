@@ -64,6 +64,10 @@ class User
                                 thumb: ["50x50#", :jpg]
                             }
 
+  embeds_one :subscribe
+  accepts_nested_attributes_for :subscribe, update_only: true
+  after_create :create_subscribe
+
   has_and_belongs_to_many :conversations
   before_create :set_unique_avatar_name
 

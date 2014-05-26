@@ -11,6 +11,10 @@ ru:
       user:
         confirm_password: Подтвердите пароль
         terms: Я согласен с правилами сервиса
+      subscribe:
+        responses: Уведомлять о новых откликах к заказу
+        messages: Уведомлять о новых личных сообщениях
+        events_in_town: Уведомлять о новых заказах в моем городе
     # Labels and hints examples
     # labels:
     #   defaults:
