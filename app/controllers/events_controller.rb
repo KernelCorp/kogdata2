@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     if params[:user_id].blank?
       @events = Event.active.on_day params[:day]
     else
-      @events = User.find(params[:user_id]).events.on_day params[:day]
+      @events =  can?(:create, Event) ? User.find(params[:user_id]).events.on_day(params[:day]) : Event.all
     end
   end
 

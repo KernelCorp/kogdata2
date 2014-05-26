@@ -27,6 +27,7 @@
   :javascript
     $(function() {
       window.eventRequestRouter = new Kogdata2.Routers.EventRequestsRouter({eventRequests: []});
+      window.eventsRouter = new Kogdata2.Routers.EventsRouter({events: {locals: {events: Event.all}}});
       window.conversationsRouter = new Kogdata2.Routers.ConversationsRouter({conversations: []});
       Backbone.history.start({root: '#{user_path current_user}'});
     });

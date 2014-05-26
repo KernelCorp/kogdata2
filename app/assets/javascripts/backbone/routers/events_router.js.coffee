@@ -15,6 +15,7 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     "events/:id/edit" : "edit"
     "events/:id"      : "show"
     "events/.*"       : "index"
+    "calendar"       : "contractor_index"
 
 
   newEvent: ->
@@ -25,6 +26,11 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     @events.fetch success: =>
       @view = new Kogdata2.Views.Events.IndexView collection: @events
       $('#events').html @view.render().el
+
+  contractor_index: ->
+    @events.fetch success: =>
+      @view = new Kogdata2.Views.Events.ContractorView collection: @events
+      $('#right_block .back_white_box').html @view.render().el
 
   show: (id) ->
     new Kogdata2.Models.Event( id: id ).fetch success: (event) =>
