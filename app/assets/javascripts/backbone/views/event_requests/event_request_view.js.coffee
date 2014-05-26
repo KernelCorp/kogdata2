@@ -6,7 +6,6 @@ class Kogdata2.Views.EventRequests.EventRequestView extends Backbone.View
   events:
     "click .destroy" : "destroy"
 
-  tagName: "tr"
 
   destroy: () ->
     @model.destroy()
@@ -16,6 +15,4 @@ class Kogdata2.Views.EventRequests.EventRequestView extends Backbone.View
 
   render: ->
     $(@el).html(@template(@model.toJSON() ))
-
-
     return this

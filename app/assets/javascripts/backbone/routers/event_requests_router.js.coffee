@@ -17,10 +17,10 @@ class Kogdata2.Routers.EventRequestsRouter extends Backbone.Router
 
   index: (event_id) ->
     @eventRequests = new Kogdata2.Collections.EventRequestsCollection(event_id)
-    @eventRequests.fetch();
-    @view = new Kogdata2.Views.EventRequests.IndexView(collection: @eventRequests)
-    $("#events").html(@view.render().el)
-
+    @eventRequests.fetch reset: true, success: (collection)=>
+      @view = new Kogdata2.Views.EventRequests.IndexView(collection: @eventRequests)
+      $("#events").html(@view.render().el)
+      return
   show: (id) ->
     event_request = @eventRequest.get(id)
 

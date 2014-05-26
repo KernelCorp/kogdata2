@@ -5,7 +5,7 @@
     - avatar = @photographer.avatar
   %tr
     %td.contractor_avatar
-      %img{src: avatar, style: 'height: 25px'  }
+      %img{src: avatar}
     %td.contractor_name
       %a{href: @photograph_path}
         = "#{@photographer.name} #{@photographer.surname}"
@@ -18,17 +18,3 @@
         %i.icon-k-small-message
   - phid = @photograph_id
   :javascript
-    if ($('.write_contractor .write').attr('href') === '#') {
-      $('.write_contractor .write').click(function() {
-        $.ajax({
-          url: "/conversations/create_with_user",
-          data: {user_id: #{phid}},
-          type: 'post',
-          format: 'json',
-          success: function() {
-            console.log('done!!!');
-          }
-        });
-        return false;
-      });
-    }

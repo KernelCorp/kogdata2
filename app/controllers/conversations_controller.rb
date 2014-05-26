@@ -25,7 +25,10 @@ class ConversationsController < ApplicationController
     @conversation = current_user.conversations.build
     @conversation.users.push User.find params[:user_id]
     @conversation.save
-    respond_with conversation_path(@conversation)
+    current_user.save
+    respond_to do |format|
+      format.json {render json: {conversation_id: @conversation.id}}
+    end
   end
 
   private
