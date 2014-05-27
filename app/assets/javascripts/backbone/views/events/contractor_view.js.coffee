@@ -1,7 +1,7 @@
 Kogdata2.Views.Events ||= {}
 
 class Kogdata2.Views.Events.ContractorView extends Backbone.View
-  template: JST["backbone/templates/events/index"]
+  template: JST["backbone/templates/events/index_in_day"]
   right_block: '#right_block'
   calendar: "<div class='back_white_box'><div class='calendar-container'><div id='calendar'></div></div></div>"
   initialize: () ->
@@ -9,7 +9,7 @@ class Kogdata2.Views.Events.ContractorView extends Backbone.View
 
   render_calendar_widget: =>
     $(@right_block).html(@calendar)
-    window.calendarController = new EventsCalendarController()
+    window.calendarController = new ContractorCalendarController()
     $('.fc-button-prev').click =>
       window.eventsRouter.contractor_index()
       return
@@ -31,7 +31,16 @@ class Kogdata2.Views.Events.ContractorView extends Backbone.View
     view = new Kogdata2.Views.Events.EventView({model : event})
     @$("tbody").append(view.render().el)
 
-  render: =>
+  render_all: =>
     @addAll()
+
+  render_day: (date)=>
+    date = new Date(date)
+    filtered_collection = []
+    for event in @collection.models
+      event_date = new Date(event.attributes.date)
+      filtered_collection.push event if event_date.getDate() == date.getDate() && event_date.getMonth() == date.getMonth() && event_date.getFullYear() == date.getFullYear()
+    $('body').append(@template(events: filtered_collection))
+    return
 
     return this

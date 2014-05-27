@@ -1,0 +1,19 @@
+#modal_window
+  %table
+    %tr
+      %td
+        id заказа
+      %td
+        Тип события
+      %td
+        Место проведения
+      %td
+        Время начала
+      %td
+        Цена заказа
+      %td
+    %tr
+      - for event in @events
+        %td
+          = event.id
+        %td

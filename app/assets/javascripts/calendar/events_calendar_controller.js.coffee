@@ -1,6 +1,7 @@
+#= require './events_calendar_controller'
 class @EventsCalendarController extends CalendarController
 
-  update: (events) ->
+  update: (events)->
     for event in events
       date = new Date event.attributes.date
       day_selector = ".fc-day-number:contains('#{date.getDate()}')"
@@ -18,5 +19,4 @@ class @EventsCalendarController extends CalendarController
 
   is_up_to_date: (event_date)->
     event_date = new Date(event_date)
-    console.log event_date.getMonth() == $(@calendar_selector).fullCalendar('getDate').getMonth()
     return event_date.getMonth() == $(@calendar_selector).fullCalendar('getDate').getMonth()
