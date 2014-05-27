@@ -11,10 +11,10 @@ class Kogdata2.Views.Events.ContractorView extends Backbone.View
     $(@right_block).html(@calendar)
     window.calendarController = new EventsCalendarController()
     $('.fc-button-prev').click =>
-      window.eventsRouter.index()
+      window.eventsRouter.contractor_index()
       return
     $('.fc-button-next').click =>
-      window.eventsRouter.index()
+      window.eventsRouter.contractor_index()
       return
     return
 
@@ -32,7 +32,6 @@ class Kogdata2.Views.Events.ContractorView extends Backbone.View
     @$("tbody").append(view.render().el)
 
   render: =>
-    $(@el).html(@template(events: @collection.toJSON() ))
     @addAll()
 
     return this

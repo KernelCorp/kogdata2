@@ -3,12 +3,15 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     @events = new Kogdata2.Collections.EventsCollection()
     window.eventRequestRouter = new Kogdata2.Routers.EventRequestsRouter({eventRequests: []});
     @events.reset options.events[0]
+    @is_contractor = options.is_contractor
     $('.fc-button-prev').click =>
-      @index()
+      if @is_contractor then @contractor_index() else @index()
       return
     $('.fc-button-next').click =>
-      @index()
+      if @is_contractor then @contractor_index() else @index()
       return
+  is_contractor: null
+
   routes:
     "events/new"      : "newEvent"
     ".*"              : "index"
@@ -23,14 +26,15 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     $("#events").html(@view.render().el)
 
   index: ->
-    @events.fetch success: =>
-      @view = new Kogdata2.Views.Events.IndexView collection: @events
-      $('#events').html @view.render().el
+    unless @is_contractor
+      @events.fetch success: =>
+        @view = new Kogdata2.Views.Events.IndexView collection: @events
+        $('#events').html @view.render().el
 
   contractor_index: ->
     @events.fetch success: =>
       @view = new Kogdata2.Views.Events.ContractorView collection: @events
-      $('#right_block .back_white_box').html @view.render().el
+      @view.render().el
 
   show: (id) ->
     new Kogdata2.Models.Event( id: id ).fetch success: (event) =>
