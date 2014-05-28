@@ -30,5 +30,7 @@ class @CalendarController
 #		eventDragStart: @::onDragStart
 
 
+
+
   constructor: ->
     $(@calendar_selector).fullCalendar @fullCalendarOption

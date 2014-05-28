@@ -16,7 +16,20 @@ class @EventsCalendarController extends CalendarController
         filtered_collection.push event if @is_up_to_date(event.attributes.date)
     return filtered_collection
 
+  set_month: (month_num)->
+    date = $(@calendar_selector).fullCalendar 'getDate'
+    date.setMonth month_num
+    $(@calendar_selector).fullCalendar 'gotoDate', date
+    return
+  set_year: (year_num)->
+    date = $(@calendar_selector).fullCalendar 'getDate'
+    date.setYear year_num
+    $(@calendar_selector).fullCalendar 'gotoDate', date
+    return
 
+  month_and_year_for_url: ->
+    date = $(@calendar_selector).fullCalendar 'getDate'
+    return "/#{date.getMonth()}/#{date.getFullYear()}"
   is_up_to_date: (event_date)->
     event_date = new Date(event_date)
     return event_date.getMonth() == $(@calendar_selector).fullCalendar('getDate').getMonth()

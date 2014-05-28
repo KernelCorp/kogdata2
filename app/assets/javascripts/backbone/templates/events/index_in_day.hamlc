@@ -1,19 +1,33 @@
-#modal_window
+.modal_window#events_in_day
+  %h1.date
+    - monthNames = ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря']
+    - date = new Date(@events[0].attributes.date)
+    #{date.getDate()} #{monthNames[date.getMonth()]} #{date.getFullYear()}
   %table
-    %tr
-      %td
-        id заказа
-      %td
-        Тип события
-      %td
-        Место проведения
-      %td
-        Время начала
-      %td
-        Цена заказа
-      %td
+    %thead
+      %tr
+        %td.type
+          Тип события
+        %td.place
+          Место проведения
+        %td.time
+          Время начала
+        %td.price
+          Цена заказа
+        %td.status
     %tr
       - for event in @events
         %td
-          = event.id
+          = event.attributes.type
         %td
+          = event.attributes.city
+        %td
+          - date = new Date(event.attributes.date)
+          #{date.getHours()}:#{if (0 >= date.getMinutes()) && (9 >= date.getMinutes()) then String(date.getMinutes())+String(date.getMinutes()) else date.getMinutes() }
+        %td
+          = event.attributes.budget
+        %td
+          - if event.attributes.event_requests_count == 0
+            %a.make_request{href: "/events/#{event.id}/event_requests"}
+              откликнуться
+  %a.close_modal{href: document.URL.replace(/\/day\/.+/, '')}

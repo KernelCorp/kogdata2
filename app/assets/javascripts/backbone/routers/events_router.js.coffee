@@ -18,8 +18,10 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
     "events/:id/edit" : "edit"
     "events/:id"      : "show"
     "events/.*"       : "index"
+    "calendar/:month_num/:year_num"        : "contractor_index"
     "calendar"        : "contractor_index"
-    "calendar/:date"  : 'show_day_events'
+    "calendar/day/:date"  : 'show_day_events'
+    "calendar/:month_num/:year_num/day/:date"  : 'show_day_events'
 
 
   newEvent: ->
@@ -32,10 +34,10 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
         @view = new Kogdata2.Views.Events.IndexView collection: @events
         $('#events').html @view.render().el
 
-  contractor_index: ->
+  contractor_index: (month_num, year_num)->
     @events.fetch success: =>
       @view = new Kogdata2.Views.Events.ContractorView collection: @events
-      @view.render_all()
+      @view.render_all(month_num, year_num)
 
   show: (id) ->
     new Kogdata2.Models.Event( id: id ).fetch success: (event) =>
@@ -47,9 +49,10 @@ class Kogdata2.Routers.EventsRouter extends Backbone.Router
       @view = new Kogdata2.Views.Events.EditView model: event
       $('#events').html @view.render().el
 
-  show_day_events: (date)->
-    @view = new Kogdata2.Views.Events.ContractorView collection: @events
-    @view.render_day(date)
+  show_day_events: (mont_num, year_num, date)->
+    @events.fetch success:  =>
+      @view = new Kogdata2.Views.Events.ContractorView collection: @events
+      @view.render_day(date)
     return
 
     

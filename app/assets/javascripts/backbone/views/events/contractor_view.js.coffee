@@ -19,10 +19,18 @@ class Kogdata2.Views.Events.ContractorView extends Backbone.View
     return
 
 
-  addAll: () =>
+  addAll: (month_num, year_num) =>
 #    @options.events.each(@addOne)
     if $('.calendar-container').length == 0
       @render_calendar_widget()
+    if month_num
+      calendarController.set_month(month_num)
+      calendarController.set_year(year_num)
+    if document.URL.match /#calendar\/\d+\/\d+/
+      new_url = document.URL.replace(/#calendar\/\d+\/\d+/, "#calendar#{calendarController.month_and_year_for_url()}" )
+      window.location = new_url
+    else
+      window.location += calendarController.month_and_year_for_url()
     filtered_collection = window.calendarController.select_up_to_date_events(@collection.models)
     window.calendarController.update filtered_collection
 
@@ -31,8 +39,9 @@ class Kogdata2.Views.Events.ContractorView extends Backbone.View
     view = new Kogdata2.Views.Events.EventView({model : event})
     @$("tbody").append(view.render().el)
 
-  render_all: =>
-    @addAll()
+  render_all: (month_num, year_num)=>
+    $('#events_in_day').remove()
+    @addAll(month_num, year_num)
 
   render_day: (date)=>
     date = new Date(date)
@@ -41,6 +50,16 @@ class Kogdata2.Views.Events.ContractorView extends Backbone.View
       event_date = new Date(event.attributes.date)
       filtered_collection.push event if event_date.getDate() == date.getDate() && event_date.getMonth() == date.getMonth() && event_date.getFullYear() == date.getFullYear()
     $('body').append(@template(events: filtered_collection))
+    $('.make_request').click ->
+      $.ajax {
+        url: $(this).attr('href')
+        method: 'post'
+        format: 'json'
+        success: =>
+          $(this).hide 'slow'
+          return
+      }
+      return false
     return
 
     return this

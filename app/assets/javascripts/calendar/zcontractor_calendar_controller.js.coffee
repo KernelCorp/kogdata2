@@ -5,5 +5,5 @@ class @ContractorCalendarController extends EventsCalendarController
       date = new Date event.attributes.date
       day_selector = ".fc-day-number:contains('#{date.getDate()}')"
       $(day_selector).parent().addClass('event-day')
-      $(day_selector).parent().append("<a class='event_link' href='#{window.location}/#{event.attributes.date}'></a>")
+      $(day_selector).parent().append("<a class='event_link' href='#{window.location}/day/#{event.attributes.date}'></a>")
     return

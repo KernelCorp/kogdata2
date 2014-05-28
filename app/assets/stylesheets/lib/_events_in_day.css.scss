@@ -1,0 +1,70 @@
+@import "compass";
+#events_in_day{
+	@include border-radius(10px);
+	position: relative;
+	h1{
+		color: #b54141;
+		font-family: 'OpenSans-bold';
+		font-weight: bold;
+		font-size: 30px;
+		text-align: center;
+	}
+	width: 900px;
+	padding: 30px 0 30px 0;
+	position: fixed;
+	top: 150px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: #edf4ef;
+	table {
+		thead{
+			td{
+				font-family: 'OpenSans-bold';
+				font-weight: bold;
+				font-size: 16px;
+				color: #00525a;
+				&.type{
+					width: 150px;
+				}
+				&.place{
+					width: 215px;
+				}
+				&.time{
+					width: 150px;
+				}
+				&.price{
+					width: 150px;
+				}
+
+			}
+		}
+		td{
+			text-align: center;
+			font-family: 'OpenSans';
+			font-size: 16px;
+			color: #516162;
+
+			a.make_request{
+				@include border-radius(4px);
+				width: 125px;
+				height: 25px;
+				background-color: #f9918f;
+				font-family: 'OpenSans';
+				font-size: 16px;
+				color: #ffffff;
+				display: block;
+				line-height: 25px;
+			}
+
+		}
+	}
+	a.close_modal{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		background: url('/images/close_modal.png') no-repeat;
+		height: 25px;
+		width: 25px;
+	}
+}
