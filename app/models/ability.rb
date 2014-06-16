@@ -37,7 +37,7 @@ class Ability
       (user.conversations.include? message.conversation) || message.conversation.nil?
     end
     if user.is_a? Photographer
-      can [:show, :index], Event
+      can [:show, :index, :my_requests], Event
       can [:new, :create], EventRequest
       can [:show, :destroy], EventRequest do |request|
         user.event_requests.include? request

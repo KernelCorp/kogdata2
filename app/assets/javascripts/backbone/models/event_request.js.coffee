@@ -13,7 +13,7 @@ class Kogdata2.Collections.EventRequestsCollection extends Backbone.Collection
 
   constructor: (event_id) ->
     if event_id == null
-      @url = "event_requests.json"
+      @url = "/my_requests.json"
     else
       @url = "/events/#{event_id}/event_requests.json"
     super

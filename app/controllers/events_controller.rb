@@ -14,6 +14,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def my_requests
+    if can? :create, EventRequest
+      @events = current_user.event_requests.map {|req| req.event}
+    end
+    render json: @events
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show

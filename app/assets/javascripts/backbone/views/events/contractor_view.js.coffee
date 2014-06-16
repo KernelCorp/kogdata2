@@ -43,12 +43,17 @@ class Kogdata2.Views.Events.ContractorView extends Backbone.View
     $('#events_in_day').remove()
     @addAll(month_num, year_num)
 
-  render_day: (date)=>
-    date = new Date(date)
+  get_filtered_collection: (date)->
     filtered_collection = []
     for event in @collection.models
       event_date = new Date(event.attributes.date)
       filtered_collection.push event if event_date.getDate() == date.getDate() && event_date.getMonth() == date.getMonth() && event_date.getFullYear() == date.getFullYear()
+      console.log filtered_collection
+    return filtered_collection
+
+  render_day: (date)=>
+    date = new Date(date)
+    filtered_collection = @get_filtered_collection(date)
     $('body').append(@template(events: filtered_collection))
     $('.make_request').click ->
       $.ajax {

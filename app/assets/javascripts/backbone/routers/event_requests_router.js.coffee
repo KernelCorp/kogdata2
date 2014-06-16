@@ -10,9 +10,10 @@ class Kogdata2.Routers.EventRequestsRouter extends Backbone.Router
     "events/:event_id/requests/:id"      : "show"
     "events/:event_id/requests"          : "index"
     "requests/"                          : "index"
+    "my_calendar/:month_num/:year_num"    : "contractor_index"
 
   newEventRequest: ->
-    @view = new Kogdata2.Views.EventRequests.NewView(collection: @eventRequest)
+    @view = new Kogdata2.Views.EventRequests.NewView(collection: @eventRequests)
     $("#eventRequest").html(@view.render().el)
 
   index: (event_id) ->
@@ -21,6 +22,19 @@ class Kogdata2.Routers.EventRequestsRouter extends Backbone.Router
       @view = new Kogdata2.Views.EventRequests.IndexView(collection: @eventRequests)
       $("#events").html(@view.render().el)
       return
+
+  contractor_index: (month_num, year_num)->
+    @eventRequests = new Kogdata2.Collections.EventRequestsCollection(null)
+    @eventRequests.fetch reset: true, success: (collection)=>
+      get_event = (req)->
+        return req.event
+      events_collection = []
+      events_collection = @eventRequests.map(get_event)
+      @view = new Kogdata2.Views.Events.ContractorView(collection: events_collection)
+      @view.render_all(month_num, year_num)
+      console.log events_collection
+      return
+
   show: (id) ->
     event_request = @eventRequest.get(id)
 
