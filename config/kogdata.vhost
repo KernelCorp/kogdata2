@@ -1,5 +1,5 @@
 upstream kogdata_server {
-    server unix:/var/www/kogdata/shared/puma.sock fail_timeout=0;
+    server unix:/var/www/kogdata/shared/sockets/puma.sock fail_timeout=0;
 }
 
 server {
